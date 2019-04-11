@@ -28,6 +28,49 @@ namespace OurDDLApp
 
         private void btnDisconnectMySQL_Click(object sender, EventArgs e)
         {
+            DisconnectMysql();
+        }
+
+        private void btnConnectMySQL_Click(object sender, EventArgs e)
+        {
+            ConnectMySQL();
+        }
+
+        /// <summary>
+        /// Print log in label log
+        /// </summary>
+        /// <param name="log">log to print</param>
+        public void ShowLog(string log)
+        {
+            lblLogs.Text = "";
+            lblLogs.Text = log;
+        }
+
+        /// <summary>
+        /// Check mysql connection status.
+        /// </summary>
+        /// <returns>Return true if connected, false if disconnected.</returns>
+        public bool CheckConnectMySQL()
+        {
+            bool response = false;
+
+            //if mysqlconnection states is open, return true
+            if (mySqlConnection.State == ConnectionState.Open)
+            {
+                response = true;
+            } //else if mysqlconnection state is close, return false
+            else if (mySqlConnection.State == ConnectionState.Closed)
+            {
+                response =  false;
+            }
+            return response;
+        }
+        
+        /// <summary>
+        /// Connect and open connection to MySQL
+        /// </summary> 
+        public void ConnectMySQL()
+        {
             //frmConnectDBMS instance
             frmConnectDBMS frmConnect = new frmConnectDBMS();
 
@@ -45,6 +88,8 @@ namespace OurDDLApp
                         //try connection
                         string connection = "";
                         connection = String.Format("server={0};port={1};user={2};password={3}", frmConnect.txtServer.Text, frmConnect.txtPort.Text, frmConnect.txtUsername.Text, frmConnect.txtPassword.Text);
+                        btnConnectMySQL.Enabled = false;
+                        btnDisconnectMySQL.Enabled = false;
                         mySqlConnection = new MySql.Data.MySqlClient.MySqlConnection(connection);
                         //open connection
                         mySqlConnection.Open();
@@ -52,9 +97,9 @@ namespace OurDDLApp
                         if (CheckConnectMySQL())
                         {
                             b = false;
-                            lblConnectionStatus.Text = "Connection status: Open";
-                            btnConnectMySQL.Enabled = true;
-                            btnDisconnectMySQL.Enabled = false;
+                            ShowLog("Connection status: Open");
+                            btnConnectMySQL.Enabled = false;
+                            btnDisconnectMySQL.Enabled = true;
                         }
                     }
                     catch (Exception ex)
@@ -66,6 +111,7 @@ namespace OurDDLApp
                         {
                             //stop attempts
                             b = false;
+                            btnConnectMySQL.Enabled = true;
                         } //else if dialogresult is retry, new attempt
                         else if (dialog == DialogResult.Retry)
                         {
@@ -78,37 +124,26 @@ namespace OurDDLApp
                 {
                     //stop attempts
                     b = false;
+                    btnConnectMySQL.Enabled = true;
+                    btnDisconnectMySQL.Enabled = false;
                 }
-            } 
+            }
         }
 
-        private void btnConnectMySQL_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Close connection to MySQL
+        /// </summary>
+        public void DisconnectMysql()
         {
             //close connection
             mySqlConnection.Close();
             //if connection state is close
             if (!CheckConnectMySQL())
             {
-                lblConnectionStatus.Text = "Connection status: Close";
-                btnConnectMySQL.Enabled = false;
-                btnDisconnectMySQL.Enabled = true;
+                ShowLog("Connection status: Close");
+                btnConnectMySQL.Enabled = true;
+                btnDisconnectMySQL.Enabled = false;
             }
-        }
-
-        public bool CheckConnectMySQL()
-        {
-            bool response = false;
-
-            //if mysqlconnection states is open, return true
-            if (mySqlConnection.State == ConnectionState.Open)
-            {
-                response = true;
-            } //else if mysqlconnection state is close, return false
-            else if (mySqlConnection.State == ConnectionState.Closed)
-            {
-                response =  false;
-            }
-            return response;
         }
     }
 }
