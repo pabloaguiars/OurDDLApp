@@ -2,4 +2,4 @@
 A small client software for basic DDL operations for a DBMS.
 
 ## Commits
-Los commits deberán estar en **inglés**, describiendo brevemente y lo mejor posible la actualización.
+Commitments must be in **English**, briefly describing the update as best as possible.
