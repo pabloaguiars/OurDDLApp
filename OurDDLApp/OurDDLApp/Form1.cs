@@ -26,16 +26,6 @@ namespace OurDDLApp
             
         }
 
-        private void btnDisconnectMySQL_Click(object sender, EventArgs e)
-        {
-            DisconnectMysql();
-        }
-
-        private void btnConnectMySQL_Click(object sender, EventArgs e)
-        {
-            ConnectMySQL();
-        }
-
         /// <summary>
         /// Print log in label log
         /// </summary>
@@ -58,10 +48,12 @@ namespace OurDDLApp
             if (mySqlConnection.State == ConnectionState.Open)
             {
                 response = true;
+                ShowLog("Connection status: Open.");
             } //else if mysqlconnection state is close, return false
             else if (mySqlConnection.State == ConnectionState.Closed)
             {
                 response =  false;
+                ShowLog("Connection status: Close.");
             }
             return response;
         }
@@ -88,8 +80,8 @@ namespace OurDDLApp
                         //try connection
                         string connection = "";
                         connection = String.Format("server={0};port={1};user={2};password={3}", frmConnect.txtServer.Text, frmConnect.txtPort.Text, frmConnect.txtUsername.Text, frmConnect.txtPassword.Text);
-                        btnConnectMySQL.Enabled = false;
-                        btnDisconnectMySQL.Enabled = false;
+                        connectToolStripMenuItem.Enabled = false;
+                        disconnectToolStripMenuItem.Enabled = false;
                         mySqlConnection = new MySql.Data.MySqlClient.MySqlConnection(connection);
                         //open connection
                         mySqlConnection.Open();
@@ -97,9 +89,8 @@ namespace OurDDLApp
                         if (CheckConnectMySQL())
                         {
                             b = false;
-                            ShowLog("Connection status: Open");
-                            btnConnectMySQL.Enabled = false;
-                            btnDisconnectMySQL.Enabled = true;
+                            connectToolStripMenuItem.Enabled = false;
+                            disconnectToolStripMenuItem.Enabled = true;
                         }
                     }
                     catch (Exception ex)
@@ -111,7 +102,7 @@ namespace OurDDLApp
                         {
                             //stop attempts
                             b = false;
-                            btnConnectMySQL.Enabled = true;
+                            connectToolStripMenuItem.Enabled = true;
                         } //else if dialogresult is retry, new attempt
                         else if (dialog == DialogResult.Retry)
                         {
@@ -124,8 +115,8 @@ namespace OurDDLApp
                 {
                     //stop attempts
                     b = false;
-                    btnConnectMySQL.Enabled = true;
-                    btnDisconnectMySQL.Enabled = false;
+                    connectToolStripMenuItem.Enabled = true;
+                    disconnectToolStripMenuItem.Enabled = false;
                 }
             }
         }
@@ -140,10 +131,19 @@ namespace OurDDLApp
             //if connection state is close
             if (!CheckConnectMySQL())
             {
-                ShowLog("Connection status: Close");
-                btnConnectMySQL.Enabled = true;
-                btnDisconnectMySQL.Enabled = false;
+                connectToolStripMenuItem.Enabled = true;
+                disconnectToolStripMenuItem.Enabled = false;
             }
+        }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConnectMySQL();
+        }
+
+        private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisconnectMysql();
         }
     }
 }

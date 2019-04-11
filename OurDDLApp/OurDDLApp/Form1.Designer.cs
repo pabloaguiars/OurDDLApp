@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.lblLogs = new System.Windows.Forms.Label();
-            this.btnConnectMySQL = new System.Windows.Forms.Button();
-            this.btnDisconnectMySQL = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.mySQLConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,30 +41,9 @@
             this.lblLogs.AutoSize = true;
             this.lblLogs.Location = new System.Drawing.Point(12, 428);
             this.lblLogs.Name = "lblLogs";
-            this.lblLogs.Size = new System.Drawing.Size(40, 13);
+            this.lblLogs.Size = new System.Drawing.Size(95, 13);
             this.lblLogs.TabIndex = 0;
-            this.lblLogs.Text = "lblLogs";
-            // 
-            // btnConnectMySQL
-            // 
-            this.btnConnectMySQL.Location = new System.Drawing.Point(389, 195);
-            this.btnConnectMySQL.Name = "btnConnectMySQL";
-            this.btnConnectMySQL.Size = new System.Drawing.Size(75, 23);
-            this.btnConnectMySQL.TabIndex = 1;
-            this.btnConnectMySQL.Text = "Connect";
-            this.btnConnectMySQL.UseVisualStyleBackColor = true;
-            this.btnConnectMySQL.Click += new System.EventHandler(this.btnConnectMySQL_Click);
-            // 
-            // btnDisconnectMySQL
-            // 
-            this.btnDisconnectMySQL.Enabled = false;
-            this.btnDisconnectMySQL.Location = new System.Drawing.Point(308, 195);
-            this.btnDisconnectMySQL.Name = "btnDisconnectMySQL";
-            this.btnDisconnectMySQL.Size = new System.Drawing.Size(75, 23);
-            this.btnDisconnectMySQL.TabIndex = 2;
-            this.btnDisconnectMySQL.Text = "Disconnect";
-            this.btnDisconnectMySQL.UseVisualStyleBackColor = true;
-            this.btnDisconnectMySQL.Click += new System.EventHandler(this.btnDisconnectMySQL_Click);
+            this.lblLogs.Text = "Ready to connect.";
             // 
             // menu
             // 
@@ -92,20 +69,21 @@
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
             this.connectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.connectToolStripMenuItem.Text = "Connect";
+            this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // disconnectToolStripMenuItem
             // 
+            this.disconnectToolStripMenuItem.Enabled = false;
             this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
             this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.disconnectToolStripMenuItem.Text = "Disconnect";
+            this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.disconnectToolStripMenuItem_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnDisconnectMySQL);
-            this.Controls.Add(this.btnConnectMySQL);
             this.Controls.Add(this.lblLogs);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
@@ -124,8 +102,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblLogs;
-        private System.Windows.Forms.Button btnConnectMySQL;
-        private System.Windows.Forms.Button btnDisconnectMySQL;
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem mySQLConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
