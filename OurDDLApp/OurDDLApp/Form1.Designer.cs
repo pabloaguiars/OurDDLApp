@@ -33,6 +33,7 @@
             this.mySQLConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tree = new System.Windows.Forms.TreeView();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,11 +80,22 @@
             this.disconnectToolStripMenuItem.Text = "Disconnect";
             this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.disconnectToolStripMenuItem_Click);
             // 
+            // tree
+            // 
+            this.tree.BackColor = System.Drawing.SystemColors.Control;
+            this.tree.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tree.Location = new System.Drawing.Point(0, 27);
+            this.tree.Name = "tree";
+            this.tree.Size = new System.Drawing.Size(173, 398);
+            this.tree.TabIndex = 4;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tree);
             this.Controls.Add(this.lblLogs);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
@@ -106,6 +118,7 @@
         private System.Windows.Forms.ToolStripMenuItem mySQLConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem;
+        private System.Windows.Forms.TreeView tree;
     }
 }
 
