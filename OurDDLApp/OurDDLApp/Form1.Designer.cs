@@ -86,7 +86,7 @@
             this.tree.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tree.Location = new System.Drawing.Point(0, 27);
             this.tree.Name = "tree";
-            this.tree.Size = new System.Drawing.Size(173, 398);
+            this.tree.Size = new System.Drawing.Size(220, 398);
             this.tree.TabIndex = 4;
             this.tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseClick);
             // 

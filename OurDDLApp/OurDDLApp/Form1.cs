@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
 
+
 namespace OurDDLApp
 {
     public partial class frmMain : Form
     {
         //global class object for mysql connection
         private MySql.Data.MySqlClient.MySqlConnection mySqlConnection;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand;
+        private MySql.Data.MySqlClient.MySqlDataReader mySqlDataReader;
 
         public frmMain()
         {
@@ -91,6 +94,7 @@ namespace OurDDLApp
                             b = false;
                             connectToolStripMenuItem.Enabled = false;
                             disconnectToolStripMenuItem.Enabled = true;
+                            GetAllMySQLData();
                         }
                     }
                     catch (Exception ex)
@@ -133,6 +137,59 @@ namespace OurDDLApp
             {
                 connectToolStripMenuItem.Enabled = true;
                 disconnectToolStripMenuItem.Enabled = false;
+                tree.Nodes.Clear();
+            }
+        }
+
+        public void GetAllMySQLData()
+        {
+            List<string> dataBases = new List<string>();
+            try
+            {
+                if (CheckConnectMySQL())
+                {
+                    //Get all databases
+                    mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("SHOW DATABASES;", mySqlConnection);
+                    mySqlDataReader = mySqlCommand.ExecuteReader();
+                    while (mySqlDataReader.Read())
+                    {
+                        for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                        {
+                            dataBases.Add(mySqlDataReader.GetValue(i).ToString());
+                            tree.Nodes.Add(mySqlDataReader.GetValue(i).ToString());
+                        }
+                    }
+                    mySqlDataReader.Close();
+
+                    int c = 0;
+                    //for each data base, get tables and add to tree
+                    foreach (string db in dataBases)
+                    {
+                        //Use database
+                        mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("USE " + db + ";", mySqlConnection);
+                        mySqlDataReader = mySqlCommand.ExecuteReader();
+                        mySqlDataReader.Close();
+                        //Get all tables
+                        mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("SHOW TABLES;", mySqlConnection);
+                        mySqlDataReader = mySqlCommand.ExecuteReader();
+                        while (mySqlDataReader.Read())
+                        {
+                            for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                            {
+                                tree.Nodes[c].Nodes.Add(mySqlDataReader.GetValue(i).ToString());
+                            }
+                        }
+                        mySqlDataReader.Close();
+                        c++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //disconnect mysql
+                //DisconnectMysql();
+                //exception thrown, show message
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
