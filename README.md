@@ -1,4 +1,4 @@
-# our-ddl-client
+# OurDDLApp
 A small client software for basic DDL operations for MySQL.
 
 ## Commits
