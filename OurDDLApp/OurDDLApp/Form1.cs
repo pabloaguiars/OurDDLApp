@@ -145,5 +145,10 @@ namespace OurDDLApp
         {
             DisconnectMysql();
         }
+
+        private void tree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+
+        }
     }
 }
