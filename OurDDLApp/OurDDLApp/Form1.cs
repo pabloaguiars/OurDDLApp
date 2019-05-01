@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
+using MySql.Data.MySqlClient;
+
 
 
 namespace OurDDLApp
@@ -205,7 +207,69 @@ namespace OurDDLApp
 
         private void tree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+  
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TreeNode node = tree.SelectedNode;
+            MessageBox.Show(string.Format("You selected: {0}", node.Text));
+            useDatabase(node.Text);
+        }
+
+        public void useDatabase(string dataBase)
+        {
+
+            string useTable = "USE " + dataBase;
+            try
+            {
+                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+        public void dropElement(string element,string elementName)
+        {
+
+            string useTable = "DROP " + element+" " + elementName;
+            try
+            {
+                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+        private void tree_Click(object sender, EventArgs e)
+        {
+       
+        }
+
+        private void tree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void tree_DoubleClick(object sender, EventArgs e)
+        {
+            TreeNode node = tree.SelectedNode;
+            if (node.Parent != null)
+            {
+                node = node.Parent;
+            }
+            MessageBox.Show(string.Format("You selected: {0}", node.Text));
+            useDatabase(node.Text);
         }
     }
 }
