@@ -20,6 +20,7 @@ namespace OurDDLApp
         private MySql.Data.MySqlClient.MySqlConnection mySqlConnection;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand;
         private MySql.Data.MySqlClient.MySqlDataReader mySqlDataReader;
+        private string Database;
 
         public frmMain()
         {
@@ -251,6 +252,40 @@ namespace OurDDLApp
 
         }
 
+        public void crateElement(string element, string elementName)
+        {
+
+            string useTable = "CREATE " + element + " " + elementName;
+            try
+            {
+                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+        public void createDatabase( string databaseName)
+        {
+
+            string useTable = "CREATE DATABASE "  + databaseName;
+            try
+            {
+                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
         private void tree_Click(object sender, EventArgs e)
         {
        
@@ -270,6 +305,12 @@ namespace OurDDLApp
             }
             MessageBox.Show(string.Format("You selected: {0}", node.Text));
             useDatabase(node.Text);
+            Database = node.Text;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            createDatabase("Pes");
         }
     }
 }
