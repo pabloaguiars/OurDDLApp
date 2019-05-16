@@ -33,16 +33,18 @@
             this.mySQLConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tree = new System.Windows.Forms.TreeView();
+            this.treeView = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnGoBackTreeView = new System.Windows.Forms.Button();
+            this.lblTreeView = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblLogs
             // 
             this.lblLogs.AutoSize = true;
-            this.lblLogs.Location = new System.Drawing.Point(12, 428);
+            this.lblLogs.Location = new System.Drawing.Point(9, 428);
             this.lblLogs.Name = "lblLogs";
             this.lblLogs.Size = new System.Drawing.Size(95, 13);
             this.lblLogs.TabIndex = 0;
@@ -82,18 +84,17 @@
             this.disconnectToolStripMenuItem.Text = "Disconnect";
             this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.disconnectToolStripMenuItem_Click);
             // 
-            // tree
+            // treeView
             // 
-            this.tree.BackColor = System.Drawing.SystemColors.Control;
-            this.tree.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tree.Location = new System.Drawing.Point(0, 27);
-            this.tree.Name = "tree";
-            this.tree.Size = new System.Drawing.Size(220, 398);
-            this.tree.TabIndex = 4;
-            this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tree_AfterSelect);
-            this.tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseClick);
-            this.tree.Click += new System.EventHandler(this.tree_Click);
-            this.tree.DoubleClick += new System.EventHandler(this.tree_DoubleClick);
+            this.treeView.BackColor = System.Drawing.SystemColors.Control;
+            this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView.Location = new System.Drawing.Point(0, 51);
+            this.treeView.Name = "treeView";
+            this.treeView.Size = new System.Drawing.Size(220, 323);
+            this.treeView.TabIndex = 4;
+            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
+            this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseClick);
+            this.treeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
             // 
             // button1
             // 
@@ -115,15 +116,36 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // btnGoBackTreeView
+            // 
+            this.btnGoBackTreeView.Location = new System.Drawing.Point(12, 380);
+            this.btnGoBackTreeView.Name = "btnGoBackTreeView";
+            this.btnGoBackTreeView.Size = new System.Drawing.Size(75, 23);
+            this.btnGoBackTreeView.TabIndex = 7;
+            this.btnGoBackTreeView.Text = "Go back";
+            this.btnGoBackTreeView.UseVisualStyleBackColor = true;
+            this.btnGoBackTreeView.Click += new System.EventHandler(this.btnGoBackTreeView_Click);
+            // 
+            // lblTreeView
+            // 
+            this.lblTreeView.AutoSize = true;
+            this.lblTreeView.Location = new System.Drawing.Point(12, 35);
+            this.lblTreeView.Name = "lblTreeView";
+            this.lblTreeView.Size = new System.Drawing.Size(35, 13);
+            this.lblTreeView.TabIndex = 8;
+            this.lblTreeView.Text = "label1";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblTreeView);
+            this.Controls.Add(this.btnGoBackTreeView);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.tree);
+            this.Controls.Add(this.treeView);
             this.Controls.Add(this.lblLogs);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
@@ -146,9 +168,11 @@
         private System.Windows.Forms.ToolStripMenuItem mySQLConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem;
-        private System.Windows.Forms.TreeView tree;
+        private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnGoBackTreeView;
+        private System.Windows.Forms.Label lblTreeView;
     }
 }
 
