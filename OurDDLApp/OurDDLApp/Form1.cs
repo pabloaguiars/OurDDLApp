@@ -235,10 +235,10 @@ namespace OurDDLApp
 
         }
 
-        public void dropElement(string element,string elementName)
+        public void dropTable (string elementName)
         {
 
-            string useTable = "DROP " + element+" " + elementName;
+            string useTable = "DROP TABLE"+" " + elementName;
             try
             {
                 mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
@@ -252,10 +252,10 @@ namespace OurDDLApp
 
         }
 
-        public void crateElement(string element, string elementName)
+        public void dropDatabase( string elementName)
         {
 
-            string useTable = "CREATE " + element + " " + elementName;
+            string useTable = "DROP DATABASE"  + " " + elementName;
             try
             {
                 mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
@@ -268,11 +268,62 @@ namespace OurDDLApp
             }
 
         }
+
 
         public void createDatabase( string databaseName)
         {
 
             string useTable = "CREATE DATABASE "  + databaseName;
+            try
+            {
+                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+        public void createTable(string tableName)
+        {
+
+            string useTable = "CREATE TABLE "+ tableName + "( id INT NOT NULL PRIMARY KEY AUTO_INCREMENT );";
+            try
+            {
+                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+        public void createField(string tableName, string fieldName,string fieldType)
+        {
+
+            string useTable = "AlTER TABLE " + tableName + " ADD " + fieldName +" "+ fieldType;
+            try
+            {
+                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+        public void deleteField(string tableName, string fieldName)
+        {
+
+            string useTable = "AlTER TABLE " + tableName + " DROP  " + fieldName ;
             try
             {
                 mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
@@ -310,7 +361,8 @@ namespace OurDDLApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            createDatabase("Pes");
+
+            deleteField("pos","hola");
         }
     }
 }
