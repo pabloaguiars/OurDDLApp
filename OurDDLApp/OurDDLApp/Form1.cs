@@ -258,6 +258,7 @@ namespace OurDDLApp
             TreeNode node = treeView.SelectedNode;
             MessageBox.Show(string.Format("You selected: {0}", node.Text));
             useDatabase(node.Text);
+
         }
 
         public void useDatabase(string dataBase)
@@ -382,7 +383,9 @@ namespace OurDDLApp
         private void button2_Click(object sender, EventArgs e)
         {
 
-            deleteField("pos","hola");
+            createTable("hola");
+            PutDataInTreeView();
+
         }
 
         private void btnGoBackTreeView_Click(object sender, EventArgs e)
@@ -494,6 +497,57 @@ namespace OurDDLApp
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["field"] = e.Node.Text;
             }
+        }
+
+        private bool ConfirmQuery(string query)
+        {
+            bool answer = false;
+
+            //create dialog for response
+            DialogResult result = MessageBox.Show(string.Format("Execute the following query: '{0}'?", query), "Confirm query", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                //positive confirm
+                answer = true;
+            }
+            else if (result == DialogResult.No)
+            {
+                //negative confirm
+                answer = false;
+            }
+
+            return answer;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dropTable(currentSelectedElementName);
+            PutDataInTreeView();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            dropDatabase(currentSelectedElementName);
+            PutDataInTreeView();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            createField(wayToElement["table"], "hola", "int");
+            PutDataInTreeView();
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            createDatabase("hola");
+            PutDataInTreeView();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            deleteField(wayToElement["table"], currentSelectedElementName);
+            PutDataInTreeView();
         }
     }
 }
