@@ -41,6 +41,7 @@ namespace OurDDLApp
             wayToElement.Add("field", "");
             lblTreeView.Text = "";
             btnGoBackTreeView.Enabled = false;
+            btnGoBackTreeView.Visible = false;
         }
 
         /// <summary>
@@ -98,8 +99,7 @@ namespace OurDDLApp
                         string connection = "";
                         connection = String.Format("server={0};port={1};user={2};password={3}", frmConnect.txtServer.Text, frmConnect.txtPort.Text, frmConnect.txtUsername.Text, frmConnect.txtPassword.Text);
                         //change view
-                        connectToolStripMenuItem.Enabled = false;
-                        disconnectToolStripMenuItem.Enabled = false;
+                        btnConnectDisconnectMySQL.Enabled = false;
                         //create connection
                         mySqlConnection = new MySql.Data.MySqlClient.MySqlConnection(connection);
                         //open connection
@@ -108,8 +108,8 @@ namespace OurDDLApp
                         if (CheckConnectMySQL())
                         {
                             b = false;
-                            connectToolStripMenuItem.Enabled = false;
-                            disconnectToolStripMenuItem.Enabled = true;
+                            btnConnectDisconnectMySQL.Text = "Disconnect";
+                            btnConnectDisconnectMySQL.Enabled = true;
                             //save name and typer current element
                             wayToElement["server"] = frmConnect.txtServer.Text;
                             currentElementName = frmConnect.txtServer.Text;
@@ -118,6 +118,7 @@ namespace OurDDLApp
                             PutDataInTreeView();
                             //enable btn go back
                             btnGoBackTreeView.Enabled = true;
+                            btnGoBackTreeView.Visible = true;
                         }
                     }
                     catch (Exception ex)
@@ -129,7 +130,8 @@ namespace OurDDLApp
                         {
                             //stop attempts
                             b = false;
-                            connectToolStripMenuItem.Enabled = true;
+                            btnConnectDisconnectMySQL.Text = "Connect";
+                            btnConnectDisconnectMySQL.Enabled = true;
                         } //else if dialogresult is retry, new attempt
                         else if (dialog == DialogResult.Retry)
                         {
@@ -142,8 +144,8 @@ namespace OurDDLApp
                 {
                     //stop attempts
                     b = false;
-                    connectToolStripMenuItem.Enabled = true;
-                    disconnectToolStripMenuItem.Enabled = false;
+                    btnConnectDisconnectMySQL.Text = "Connect";
+                    btnConnectDisconnectMySQL.Enabled = true;
                 }
             }
         }
@@ -158,10 +160,18 @@ namespace OurDDLApp
             //if connection state is close
             if (!CheckConnectMySQL())
             {
-                connectToolStripMenuItem.Enabled = true;
-                disconnectToolStripMenuItem.Enabled = false;
+                btnConnectDisconnectMySQL.Text = "Connect";
                 btnGoBackTreeView.Enabled = false;
+                btnGoBackTreeView.Visible = false;
                 lblTreeView.Text = "";
+                wayToElement["server"] = "";
+                wayToElement["database"] = "";
+                wayToElement["table"] = "";
+                wayToElement["field"] = "";
+                currentElementName = "";
+                currentElementType = "";
+                currentSelectedElementName = "";
+                currentSelectedElementType = "";
                 treeView.Nodes.Clear();
             }
         }
@@ -241,16 +251,6 @@ namespace OurDDLApp
                 //exception thrown, show message
                 DialogResult dialog = MessageBox.Show("ERROR to extract data: " + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConnectMySQL();
-        }
-
-        private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DisconnectMysql();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -548,6 +548,20 @@ namespace OurDDLApp
         {
             deleteField(wayToElement["table"], currentSelectedElementName);
             PutDataInTreeView();
+        }
+
+        private void btnConnectDisconnectMySQL_Click(object sender, EventArgs e)
+        {
+            if (btnConnectDisconnectMySQL.Text == "Connect")
+            {
+                //connect
+                ConnectMySQL();
+            }
+            else
+            {
+                //disconnect
+                DisconnectMysql();
+            }
         }
     }
 }
