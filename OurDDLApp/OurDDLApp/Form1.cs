@@ -563,5 +563,15 @@ namespace OurDDLApp
                 DisconnectMysql();
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnConnectDisconnectMySQL_Click_1(object sender, EventArgs e)
+        {
+            ConnectMySQL();
+        }
     }
 }

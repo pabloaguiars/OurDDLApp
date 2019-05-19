@@ -30,22 +30,19 @@
         {
             this.lblLogs = new System.Windows.Forms.Label();
             this.treeView = new System.Windows.Forms.TreeView();
-            this.button2 = new System.Windows.Forms.Button();
             this.btnGoBackTreeView = new System.Windows.Forms.Button();
             this.lblTreeView = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnConnectDisconnectMySQL = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblLogs
             // 
             this.lblLogs.AutoSize = true;
-            this.lblLogs.Location = new System.Drawing.Point(9, 428);
+            this.lblLogs.Location = new System.Drawing.Point(27, 429);
             this.lblLogs.Name = "lblLogs";
             this.lblLogs.Size = new System.Drawing.Size(95, 13);
             this.lblLogs.TabIndex = 0;
@@ -53,29 +50,20 @@
             // 
             // treeView
             // 
-            this.treeView.BackColor = System.Drawing.SystemColors.Control;
+            this.treeView.BackColor = System.Drawing.SystemColors.ControlDark;
             this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView.Location = new System.Drawing.Point(0, 25);
+            this.treeView.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView.Location = new System.Drawing.Point(3, 42);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(220, 323);
+            this.treeView.Size = new System.Drawing.Size(250, 317);
             this.treeView.TabIndex = 4;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseClick);
             this.treeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(410, 141);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "createtable";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // btnGoBackTreeView
             // 
-            this.btnGoBackTreeView.Location = new System.Drawing.Point(12, 354);
+            this.btnGoBackTreeView.Location = new System.Drawing.Point(30, 392);
             this.btnGoBackTreeView.Name = "btnGoBackTreeView";
             this.btnGoBackTreeView.Size = new System.Drawing.Size(75, 23);
             this.btnGoBackTreeView.TabIndex = 7;
@@ -86,107 +74,61 @@
             // lblTreeView
             // 
             this.lblTreeView.AutoSize = true;
-            this.lblTreeView.Location = new System.Drawing.Point(12, 9);
+            this.lblTreeView.Location = new System.Drawing.Point(27, 10);
             this.lblTreeView.Name = "lblTreeView";
             this.lblTreeView.Size = new System.Drawing.Size(35, 13);
             this.lblTreeView.TabIndex = 8;
             this.lblTreeView.Text = "label1";
             // 
-            // button3
+            // panel1
             // 
-            this.button3.Location = new System.Drawing.Point(559, 140);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "dropTable";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.lblTreeView);
+            this.panel1.Controls.Add(this.treeView);
+            this.panel1.Controls.Add(this.btnGoBackTreeView);
+            this.panel1.Controls.Add(this.lblLogs);
+            this.panel1.Location = new System.Drawing.Point(3, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(253, 456);
+            this.panel1.TabIndex = 15;
+            this.panel1.Visible = false;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // button4
+            // panel2
             // 
-            this.button4.Location = new System.Drawing.Point(289, 211);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(110, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "drop database";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(324, 261);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "createfield";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(299, 141);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Use";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(413, 211);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(105, 23);
-            this.button6.TabIndex = 12;
-            this.button6.Text = "create database";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(440, 260);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 13;
-            this.button7.Text = "dropfield";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.panel2.Controls.Add(this.btnConnectDisconnectMySQL);
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Location = new System.Drawing.Point(-6, -5);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(807, 460);
+            this.panel2.TabIndex = 16;
             // 
             // btnConnectDisconnectMySQL
             // 
-            this.btnConnectDisconnectMySQL.Location = new System.Drawing.Point(289, 25);
+            this.btnConnectDisconnectMySQL.Location = new System.Drawing.Point(413, 172);
             this.btnConnectDisconnectMySQL.Name = "btnConnectDisconnectMySQL";
             this.btnConnectDisconnectMySQL.Size = new System.Drawing.Size(75, 23);
-            this.btnConnectDisconnectMySQL.TabIndex = 14;
-            this.btnConnectDisconnectMySQL.Text = "Connect";
+            this.btnConnectDisconnectMySQL.TabIndex = 16;
+            this.btnConnectDisconnectMySQL.Text = "button1";
             this.btnConnectDisconnectMySQL.UseVisualStyleBackColor = true;
-            this.btnConnectDisconnectMySQL.Click += new System.EventHandler(this.btnConnectDisconnectMySQL_Click);
+            this.btnConnectDisconnectMySQL.Click += new System.EventHandler(this.btnConnectDisconnectMySQL_Click_1);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnConnectDisconnectMySQL);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.lblTreeView);
-            this.Controls.Add(this.btnGoBackTreeView);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.treeView);
-            this.Controls.Add(this.lblLogs);
+            this.Controls.Add(this.panel2);
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OurDDLApp";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -194,15 +136,10 @@
 
         private System.Windows.Forms.Label lblLogs;
         private System.Windows.Forms.TreeView treeView;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnGoBackTreeView;
         private System.Windows.Forms.Label lblTreeView;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnConnectDisconnectMySQL;
     }
 }
