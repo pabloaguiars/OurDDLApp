@@ -32,10 +32,14 @@
             this.treeView = new System.Windows.Forms.TreeView();
             this.btnGoBackTreeView = new System.Windows.Forms.Button();
             this.lblTreeView = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.sideBar = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnConnectDisconnectMySQL = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.sideBar.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +56,7 @@
             // 
             this.treeView.BackColor = System.Drawing.SystemColors.ControlDark;
             this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView.Location = new System.Drawing.Point(3, 42);
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(250, 317);
@@ -80,38 +84,84 @@
             this.lblTreeView.TabIndex = 8;
             this.lblTreeView.Text = "label1";
             // 
-            // panel1
+            // sideBar
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Controls.Add(this.lblTreeView);
-            this.panel1.Controls.Add(this.treeView);
-            this.panel1.Controls.Add(this.btnGoBackTreeView);
-            this.panel1.Controls.Add(this.lblLogs);
-            this.panel1.Location = new System.Drawing.Point(3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(253, 456);
-            this.panel1.TabIndex = 15;
-            this.panel1.Visible = false;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.sideBar.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.sideBar.Controls.Add(this.lblTreeView);
+            this.sideBar.Controls.Add(this.treeView);
+            this.sideBar.Controls.Add(this.btnGoBackTreeView);
+            this.sideBar.Controls.Add(this.lblLogs);
+            this.sideBar.Location = new System.Drawing.Point(3, 4);
+            this.sideBar.Name = "sideBar";
+            this.sideBar.Size = new System.Drawing.Size(253, 456);
+            this.sideBar.TabIndex = 15;
+            this.sideBar.Visible = false;
+            this.sideBar.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.sideBar);
             this.panel2.Controls.Add(this.btnConnectDisconnectMySQL);
-            this.panel2.Controls.Add(this.panel1);
             this.panel2.Location = new System.Drawing.Point(-6, -5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(807, 460);
             this.panel2.TabIndex = 16;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // btnConnectDisconnectMySQL
             // 
-            this.btnConnectDisconnectMySQL.Location = new System.Drawing.Point(413, 172);
+            this.btnConnectDisconnectMySQL.Location = new System.Drawing.Point(287, 212);
             this.btnConnectDisconnectMySQL.Name = "btnConnectDisconnectMySQL";
-            this.btnConnectDisconnectMySQL.Size = new System.Drawing.Size(75, 23);
+            this.btnConnectDisconnectMySQL.Size = new System.Drawing.Size(257, 42);
             this.btnConnectDisconnectMySQL.TabIndex = 16;
-            this.btnConnectDisconnectMySQL.Text = "button1";
+            this.btnConnectDisconnectMySQL.Text = "Connect";
             this.btnConnectDisconnectMySQL.UseVisualStyleBackColor = true;
             this.btnConnectDisconnectMySQL.Click += new System.EventHandler(this.btnConnectDisconnectMySQL_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(317, 94);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(458, 52);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(314, 184);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(461, 53);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(317, 275);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(458, 56);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(317, 363);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(458, 56);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             // 
             // frmMain
             // 
@@ -125,8 +175,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OurDDLApp";
             this.Load += new System.EventHandler(this.frmMain_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.sideBar.ResumeLayout(false);
+            this.sideBar.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -138,9 +188,13 @@
         private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.Button btnGoBackTreeView;
         private System.Windows.Forms.Label lblTreeView;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel sideBar;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnConnectDisconnectMySQL;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

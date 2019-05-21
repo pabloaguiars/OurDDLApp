@@ -571,7 +571,32 @@ namespace OurDDLApp
 
         private void btnConnectDisconnectMySQL_Click_1(object sender, EventArgs e)
         {
-            ConnectMySQL();
+            if (btnConnectDisconnectMySQL.Text == "Connect")
+            {
+                //connect
+                ConnectMySQL();
+                sideBar.Visible = true;
+                btnConnectDisconnectMySQL.Visible = false;
+                button1.Visible = true;
+                button2.Visible = true;
+                button3.Visible = true;
+                button4.Visible = true;
+            }
+            else
+            {
+                //disconnect
+                DisconnectMysql();
+            }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
