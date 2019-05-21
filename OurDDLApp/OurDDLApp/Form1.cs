@@ -17,7 +17,7 @@ namespace OurDDLApp
     public partial class frmMain : Form
     {
         //global class object for mysql connection
-        private MySql.Data.MySqlClient.MySqlConnection mySqlConnection;
+        private MySql.Data.MySqlClient.MySqlConnection mySqlConnection = new MySqlConnection();
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand;
         private MySql.Data.MySqlClient.MySqlDataReader mySqlDataReader;
         private string Database;
@@ -39,7 +39,9 @@ namespace OurDDLApp
             wayToElement.Add("database", "");
             wayToElement.Add("table", "");
             wayToElement.Add("field", "");
-            lblTreeView.Text = "";
+            lblCurrentElementTreeView.Text = "";
+            lblCurrentSelectedElementTreeView.Text = "";
+            txtLogs.Text = "Ready to Connect";
             btnGoBackTreeView.Enabled = false;
             btnGoBackTreeView.Visible = false;
         }
@@ -50,8 +52,8 @@ namespace OurDDLApp
         /// <param name="log">log to print</param>
         public void ShowLog(string log)
         {
-            lblLogs.Text = "";
-            lblLogs.Text = log;
+
+            txtLogs.Text += System.Environment.NewLine + DateTime.Now.ToString() + " " + log;
         }
 
         /// <summary>
@@ -144,8 +146,14 @@ namespace OurDDLApp
                 {
                     //stop attempts
                     b = false;
-                    btnConnectDisconnectMySQL.Text = "Connect";
-                    btnConnectDisconnectMySQL.Enabled = true;
+                    sideBar.Visible = false;
+                    btnConnectDisconnectMySQL.Visible = true;
+                    button1.Visible = false;
+                    button2.Visible = false;
+                    button3.Visible = false;
+                    button4.Visible = false;
+                    txtLogs.Visible = false;
+                    lblCurrentSelectedElementTreeView.Visible = false;
                 }
             }
         }
@@ -163,7 +171,7 @@ namespace OurDDLApp
                 btnConnectDisconnectMySQL.Text = "Connect";
                 btnGoBackTreeView.Enabled = false;
                 btnGoBackTreeView.Visible = false;
-                lblTreeView.Text = "";
+                lblCurrentElementTreeView.Text = "";
                 wayToElement["server"] = "";
                 wayToElement["database"] = "";
                 wayToElement["table"] = "";
@@ -200,7 +208,8 @@ namespace OurDDLApp
                             }
                         }
                         mySqlDataReader.Close();
-                        lblTreeView.Text = string.Format("{0}: {1}", currentElementType, currentElementName);
+                        PutCurrentElementTreeView();
+                        PutCurrentElementSelectedTreeView();
                     }
                     else if (currentElementType == "database")
                     {
@@ -220,7 +229,8 @@ namespace OurDDLApp
                             }
                         }
                         mySqlDataReader.Close();
-                        lblTreeView.Text = string.Format("{0}: {1}", currentElementType, currentElementName);
+                        PutCurrentElementTreeView();
+                        PutCurrentElementSelectedTreeView();
                     }
                     else if (currentElementType == "table")
                     {
@@ -236,7 +246,8 @@ namespace OurDDLApp
                             }
                         }
                         mySqlDataReader.Close();
-                        lblTreeView.Text = string.Format("{0}: {1}", currentElementType, currentElementName);
+                        PutCurrentElementTreeView();
+                        PutCurrentElementSelectedTreeView();
                     }
                     else if (currentElementType == "field")
                     {
@@ -251,6 +262,18 @@ namespace OurDDLApp
                 //exception thrown, show message
                 DialogResult dialog = MessageBox.Show("ERROR to extract data: " + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void PutCurrentElementSelectedTreeView()
+        {
+            //show current selected element type and name
+            lblCurrentSelectedElementTreeView.Text = string.Format("selected {0}: {1}", currentSelectedElementType, currentSelectedElementName);
+        }
+
+        private void PutCurrentElementTreeView()
+        {
+            //show current element type and name
+            lblCurrentElementTreeView.Text = string.Format("{0}: {1}", currentElementType, currentElementName);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -390,6 +413,13 @@ namespace OurDDLApp
 
         private void btnGoBackTreeView_Click(object sender, EventArgs e)
         {
+            if (currentElementType != "server")
+            {
+                currentSelectedElementName = "";
+                currentSelectedElementType = "";
+                PutCurrentElementSelectedTreeView();
+            }
+
             if (currentElementType == "server")
             {
                 MessageBox.Show("You can´t go more up.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -431,6 +461,7 @@ namespace OurDDLApp
                 currentSelectedElementType = "database";
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["database"] = e.Node.Text;
+                PutCurrentElementSelectedTreeView();
             }
             else if (currentElementType == "database")
             {
@@ -438,6 +469,7 @@ namespace OurDDLApp
                 currentSelectedElementType = "table";
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["table"] = e.Node.Text;
+                PutCurrentElementSelectedTreeView();
             }
             else if (currentElementType == "table")
             {
@@ -445,6 +477,7 @@ namespace OurDDLApp
                 currentSelectedElementType = "field";
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["field"] = e.Node.Text;
+                PutCurrentElementSelectedTreeView();
             }
         }
 
@@ -482,6 +515,7 @@ namespace OurDDLApp
                 currentSelectedElementType = "database";
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["database"] = e.Node.Text;
+                PutCurrentElementSelectedTreeView();
             }
             else if (currentElementType == "database")
             {
@@ -489,6 +523,7 @@ namespace OurDDLApp
                 currentSelectedElementType = "table";
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["table"] = e.Node.Text;
+                PutCurrentElementSelectedTreeView();
             }
             else if (currentElementType == "table")
             {
@@ -496,6 +531,7 @@ namespace OurDDLApp
                 currentSelectedElementType = "field";
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["field"] = e.Node.Text;
+                PutCurrentElementSelectedTreeView();
             }
         }
 
@@ -550,17 +586,72 @@ namespace OurDDLApp
             PutDataInTreeView();
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnConnectDisconnectMySQL_Click(object sender, EventArgs e)
         {
             if (btnConnectDisconnectMySQL.Text == "Connect")
             {
                 //connect
                 ConnectMySQL();
+                if (CheckConnectMySQL())
+                {
+                    sideBar.Visible = true;
+                    btnConnectDisconnectMySQL.Visible = false;
+                    button1.Visible = true;
+                    button2.Visible = true;
+                    button3.Visible = true;
+                    button4.Visible = true;
+                    txtLogs.Visible = true;
+                    lblCurrentSelectedElementTreeView.Visible = true;
+                }
+              
             }
             else
             {
                 //disconnect
                 DisconnectMysql();
+                if (!CheckConnectMySQL())
+                {
+                    sideBar.Visible = false;
+                    btnConnectDisconnectMySQL.Visible = true;
+                    button1.Visible = false;
+                    button2.Visible = false;
+                    button3.Visible = false;
+                    button4.Visible = false;
+                    txtLogs.Visible = false;
+                    lblCurrentSelectedElementTreeView.Visible = false;
+                }
+            }
+        }
+
+        private void btnDisconnectMySQL_Click(object sender, EventArgs e)
+        {
+            //disconnect
+            DisconnectMysql();
+            if (!CheckConnectMySQL())
+            {
+                sideBar.Visible = false;
+                btnConnectDisconnectMySQL.Visible = true;
+                button1.Visible = false;
+                button2.Visible = false;
+                button3.Visible = false;
+                button4.Visible = false;
+                txtLogs.Visible = false;
+                lblCurrentSelectedElementTreeView.Visible = false;
             }
         }
     }
