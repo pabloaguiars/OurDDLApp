@@ -154,7 +154,7 @@
             // 
             // btnConnectDisconnectMySQL
             // 
-            this.btnConnectDisconnectMySQL.Location = new System.Drawing.Point(289, 25);
+            this.btnConnectDisconnectMySQL.Location = new System.Drawing.Point(299, 25);
             this.btnConnectDisconnectMySQL.Name = "btnConnectDisconnectMySQL";
             this.btnConnectDisconnectMySQL.Size = new System.Drawing.Size(75, 23);
             this.btnConnectDisconnectMySQL.TabIndex = 14;
