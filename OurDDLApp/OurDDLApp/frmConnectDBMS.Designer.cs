@@ -143,6 +143,7 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtServer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmConnectDBMS";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
