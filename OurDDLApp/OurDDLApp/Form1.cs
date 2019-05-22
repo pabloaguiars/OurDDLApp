@@ -148,10 +148,10 @@ namespace OurDDLApp
                     b = false;
                     sideBar.Visible = false;
                     btnConnectDisconnectMySQL.Visible = true;
-                    button1.Visible = false;
-                    button2.Visible = false;
-                    button3.Visible = false;
-                    button4.Visible = false;
+                    btnCreate.Visible = false;
+                    btnDelete.Visible = false;
+                    btnTruncate.Visible = false;
+                    btnAlter.Visible = false;
                     txtLogs.Visible = false;
                     lblCurrentSelectedElementTreeView.Visible = false;
                 }
@@ -336,20 +336,30 @@ namespace OurDDLApp
         }
 
 
-        public void createDatabase( string databaseName)
+        public void createDatabase( )
         {
+            frmCreateDataBase frmCreateDataBase = new frmCreateDataBase();
+            frmCreateDataBase.ShowDialog();
 
-            string useTable = "CREATE DATABASE "  + databaseName;
-            try
+            if (frmCreateDataBase.DialogResult == DialogResult.OK)
             {
-                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
-                mySqlCommand.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string databaseName = frmCreateDataBase.txtNombreDatabase.Text;
+                string query = "CREATE DATABASE " + databaseName;
+                ShowLog("Query: " + query);
+                try
+                {
+                    mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                    mySqlCommand.ExecuteNonQuery();
+                    PutDataInTreeView();
+                }
+                catch (Exception e)
+                {
+                    DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                }
             }
+
+              
 
         }
 
@@ -576,7 +586,6 @@ namespace OurDDLApp
 
         private void button6_Click(object sender, EventArgs e)
         {
-            createDatabase("hola");
             PutDataInTreeView();
         }
 
@@ -611,10 +620,10 @@ namespace OurDDLApp
                 {
                     sideBar.Visible = true;
                     btnConnectDisconnectMySQL.Visible = false;
-                    button1.Visible = true;
-                    button2.Visible = true;
-                    button3.Visible = true;
-                    button4.Visible = true;
+                    btnCreate.Visible = true;
+                    btnDelete.Visible = true;
+                    btnTruncate.Visible = true;
+                    btnAlter.Visible = true;
                     txtLogs.Visible = true;
                     lblCurrentSelectedElementTreeView.Visible = true;
                 }
@@ -628,10 +637,10 @@ namespace OurDDLApp
                 {
                     sideBar.Visible = false;
                     btnConnectDisconnectMySQL.Visible = true;
-                    button1.Visible = false;
-                    button2.Visible = false;
-                    button3.Visible = false;
-                    button4.Visible = false;
+                    btnCreate.Visible = false;
+                    btnDelete.Visible = false;
+                    btnTruncate.Visible = false;
+                    btnAlter.Visible = false;
                     txtLogs.Visible = false;
                     lblCurrentSelectedElementTreeView.Visible = false;
                 }
@@ -646,12 +655,35 @@ namespace OurDDLApp
             {
                 sideBar.Visible = false;
                 btnConnectDisconnectMySQL.Visible = true;
-                button1.Visible = false;
-                button2.Visible = false;
-                button3.Visible = false;
-                button4.Visible = false;
+                btnCreate.Visible = false;
+                btnDelete.Visible = false;
+                btnTruncate.Visible = false;
+                btnAlter.Visible = false;
                 txtLogs.Visible = false;
                 lblCurrentSelectedElementTreeView.Visible = false;
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            if (currentElementType=="server")
+            {
+                createDatabase();
+            }
+            else if (currentElementType == "database")
+            {
+                MessageBox.Show("database", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else if (currentElementType == "table")
+            {
+                MessageBox.Show("table", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else if (currentElementType == "field")
+            {
+                MessageBox.Show("field", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
     }

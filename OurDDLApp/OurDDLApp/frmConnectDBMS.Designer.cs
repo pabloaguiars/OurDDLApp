@@ -68,6 +68,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(182, 20);
             this.txtPassword.TabIndex = 3;
+            this.txtPassword.Text = "z";
             // 
             // lblServer
             // 

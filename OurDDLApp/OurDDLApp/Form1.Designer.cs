@@ -36,10 +36,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblCurrentSelectedElementTreeView = new System.Windows.Forms.Label();
             this.txtLogs = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAlter = new System.Windows.Forms.Button();
+            this.btnTruncate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
             this.btnConnectDisconnectMySQL = new System.Windows.Forms.Button();
             this.sideBar.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -106,10 +106,10 @@
             // 
             this.panel2.Controls.Add(this.lblCurrentSelectedElementTreeView);
             this.panel2.Controls.Add(this.txtLogs);
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnAlter);
+            this.panel2.Controls.Add(this.btnTruncate);
+            this.panel2.Controls.Add(this.btnDelete);
+            this.panel2.Controls.Add(this.btnCreate);
             this.panel2.Controls.Add(this.sideBar);
             this.panel2.Controls.Add(this.btnConnectDisconnectMySQL);
             this.panel2.Location = new System.Drawing.Point(-6, -5);
@@ -121,10 +121,11 @@
             // lblCurrentSelectedElementTreeView
             // 
             this.lblCurrentSelectedElementTreeView.AutoSize = true;
+            this.lblCurrentSelectedElementTreeView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblCurrentSelectedElementTreeView.Font = new System.Drawing.Font("Arial Narrow", 15.75F);
             this.lblCurrentSelectedElementTreeView.Location = new System.Drawing.Point(302, 25);
             this.lblCurrentSelectedElementTreeView.Name = "lblCurrentSelectedElementTreeView";
-            this.lblCurrentSelectedElementTreeView.Size = new System.Drawing.Size(211, 25);
+            this.lblCurrentSelectedElementTreeView.Size = new System.Drawing.Size(213, 27);
             this.lblCurrentSelectedElementTreeView.TabIndex = 22;
             this.lblCurrentSelectedElementTreeView.Text = "Current selected element";
             this.lblCurrentSelectedElementTreeView.Visible = false;
@@ -140,46 +141,51 @@
             this.txtLogs.Text = "Logs";
             this.txtLogs.Visible = false;
             // 
-            // button4
+            // btnAlter
             // 
-            this.button4.Location = new System.Drawing.Point(305, 327);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(458, 56);
-            this.button4.TabIndex = 20;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
+            this.btnAlter.Font = new System.Drawing.Font("Arial Narrow", 15.75F);
+            this.btnAlter.Location = new System.Drawing.Point(305, 327);
+            this.btnAlter.Name = "btnAlter";
+            this.btnAlter.Size = new System.Drawing.Size(458, 56);
+            this.btnAlter.TabIndex = 20;
+            this.btnAlter.Text = "Alter";
+            this.btnAlter.UseVisualStyleBackColor = true;
+            this.btnAlter.Visible = false;
             // 
-            // button3
+            // btnTruncate
             // 
-            this.button3.Location = new System.Drawing.Point(305, 239);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(458, 56);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
+            this.btnTruncate.Font = new System.Drawing.Font("Arial Narrow", 15.75F);
+            this.btnTruncate.Location = new System.Drawing.Point(305, 239);
+            this.btnTruncate.Name = "btnTruncate";
+            this.btnTruncate.Size = new System.Drawing.Size(458, 56);
+            this.btnTruncate.TabIndex = 19;
+            this.btnTruncate.Text = "Truncate";
+            this.btnTruncate.UseVisualStyleBackColor = true;
+            this.btnTruncate.Visible = false;
             // 
-            // button2
+            // btnDelete
             // 
-            this.button2.Location = new System.Drawing.Point(302, 148);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(461, 53);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.btnDelete.Font = new System.Drawing.Font("Arial Narrow", 15.75F);
+            this.btnDelete.Location = new System.Drawing.Point(302, 148);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(461, 53);
+            this.btnDelete.TabIndex = 18;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Visible = false;
+            this.btnDelete.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // button1
+            // btnCreate
             // 
-            this.button1.Location = new System.Drawing.Point(305, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(458, 52);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
+            this.btnCreate.Font = new System.Drawing.Font("Arial Narrow", 15.75F);
+            this.btnCreate.Location = new System.Drawing.Point(305, 58);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(458, 52);
+            this.btnCreate.TabIndex = 17;
+            this.btnCreate.Text = "Create";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Visible = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnConnectDisconnectMySQL
             // 
@@ -218,10 +224,10 @@
         private System.Windows.Forms.Panel sideBar;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnConnectDisconnectMySQL;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAlter;
+        private System.Windows.Forms.Button btnTruncate;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.TextBox txtLogs;
         private System.Windows.Forms.Label lblCurrentSelectedElementTreeView;
         private System.Windows.Forms.Button btnDisconnectMySQL;
