@@ -200,6 +200,7 @@ namespace OurDDLApp
                         List<string> databases = new List<string>();
                         mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("SHOW DATABASES;", mySqlConnection);
                         mySqlDataReader = mySqlCommand.ExecuteReader();
+                        ShowLog("Query: SHOW DATABASES;");
                         while (mySqlDataReader.Read())
                         {
                             for (int i = 0; i < mySqlDataReader.FieldCount; i++)
@@ -217,10 +218,12 @@ namespace OurDDLApp
                         //Use database
                         mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("USE " + wayToElement["database"] + ";", mySqlConnection);
                         mySqlDataReader = mySqlCommand.ExecuteReader();
+                        ShowLog("Query: USE " + wayToElement["database"] + ";");
                         mySqlDataReader.Close();
                         //Get all tables
                         mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("SHOW TABLES;", mySqlConnection);
                         mySqlDataReader = mySqlCommand.ExecuteReader();
+                        ShowLog("Query: SHOW TABLES;");
                         while (mySqlDataReader.Read())
                         {
                             for (int i = 0; i < mySqlDataReader.FieldCount; i++)
@@ -238,6 +241,7 @@ namespace OurDDLApp
                         //Get all fields
                         mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("SELECT column_name FROM information_schema.columns WHERE table_schema = database() AND table_name = '" + wayToElement["table"] + "';", mySqlConnection);
                         mySqlDataReader = mySqlCommand.ExecuteReader();
+                        ShowLog("Query: SELECT column_name FROM information_schema.columns WHERE table_schema = database() AND table_name = '" + wayToElement["table"] + "';");
                         while (mySqlDataReader.Read())
                         {
                             for (int i = 0; i < mySqlDataReader.FieldCount; i++)
@@ -287,10 +291,11 @@ namespace OurDDLApp
         public void useDatabase(string dataBase)
         {
 
-            string useTable = "USE " + dataBase;
+            string useTable = "USE " + dataBase + ";";
             try
             {
                 mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                ShowLog("Query: " + useTable);
                 mySqlCommand.ExecuteNonQuery();
             }
             catch(Exception e)

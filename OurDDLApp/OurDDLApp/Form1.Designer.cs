@@ -135,6 +135,7 @@
             this.txtLogs.Multiline = true;
             this.txtLogs.Name = "txtLogs";
             this.txtLogs.ReadOnly = true;
+            this.txtLogs.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtLogs.Size = new System.Drawing.Size(542, 57);
             this.txtLogs.TabIndex = 21;
             this.txtLogs.Text = "Logs";
