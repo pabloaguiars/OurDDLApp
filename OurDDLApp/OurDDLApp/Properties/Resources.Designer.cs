@@ -59,5 +59,65 @@ namespace OurDDLApp.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_add_cross_new_plus_create_392530 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_add_cross_new_plus_create_392530", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_cascade_display_layout_stack_sw_view_392519 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_cascade_display_layout_stack_sw_view_392519", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_close_delete_remove_icon_392517 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_close_delete_remove_icon_392517", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Delete_discart_exit_less_line_minus_negative_no_premium_remove_392511 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Delete_discart_exit_less_line_minus_negative_no_premium_remove_392511", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_edit_editor_pen_pencil_write_392507 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_edit_editor_pen_pencil_write_392507", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap index {
+            get {
+                object obj = ResourceManager.GetObject("index", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
