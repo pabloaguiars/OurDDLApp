@@ -16,5 +16,10 @@ namespace OurDDLApp
         {
             InitializeComponent();
         }
+
+        private void lblFieldType_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -188,6 +188,7 @@ namespace OurDDLApp
         {
             try
             {
+                //if it's connected...
                 if (CheckConnectMySQL())
                 {
                     if (currentElementType == "server")
@@ -417,18 +418,110 @@ namespace OurDDLApp
 
         public void alterField(string tableName, string fieldName)
         {
-            MessageBox.Show("I'm here!");
-            mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("SHOW FIELDS FROM " + tableName +  " WHERE  Field = '" + fieldName + "';", mySqlConnection);
+            //show selected field info
+            mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("SHOW FULL FIELDS FROM " + tableName +  " WHERE  Field = '" + fieldName + "';", mySqlConnection);
             mySqlDataReader = mySqlCommand.ExecuteReader();
             ShowLog("SHOW FIELDS FROM " + tableName + " WHERE  Field = '" + fieldName + "';");
+            //start form for edit field
+            frmAlterField frm = new frmAlterField();
+            //DialogResult dialogResult = frm.ShowDialog();
+            //list to store data
+            List<string> data = new List<string>();
             while (mySqlDataReader.Read())
             {
                 for (int i = 0; i < mySqlDataReader.FieldCount; i++)
                 {
-                    MessageBox.Show(mySqlDataReader.GetValue(i).ToString());
+                    data.Add(mySqlDataReader.GetValue(i).ToString());
                 }
             }
             mySqlDataReader.Close();
+
+            //name
+            frm.txtFieldName.Text = data[0];
+            //type
+            frm.txtFieldType.Text = data[1];
+            //collation
+            frm.txtFieldCollation.Text = data[2];
+            //nullable
+            if (data[3] == "YES")
+            {
+                frm.rbNullableYes.Checked = true;
+            }
+            else if (data[3] == "NO")
+            {
+                frm.rbNullableNo.Checked = true;
+            }
+            //key / index
+            if (data[4] == "PRI")
+            {
+                frm.rbKeyPrimary.Checked = true;
+            }
+            else if (data[4] == "UNI")
+            {
+                frm.rbKeyUnique.Checked = true;
+            }
+            else if (data[4] == "MUL")
+            {
+                frm.rbKeyMultiple.Checked = true;
+            }
+            else if (data[4] == "")
+            {
+                frm.rbKeyNull.Checked = true;
+            }
+            //default
+            frm.txtFieldDefault.Text = data[5];
+            //extra
+            frm.txtFieldExtra.Text = data[6];
+            //privileges
+            frm.txtFieldPrivileges.Text = data[7];
+            //comment
+            frm.txtFieldComment.Text = data[8];
+
+            //boolean to continue or not with connection attempts
+            Boolean b = true;
+            while (b)
+            {
+                //show frmAlterField and save dialog
+                DialogResult dialogResult = frm.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                {
+                    string query = "ALTER TABLE " + tableName + " CHANGE " + data[0] + " " + frm.txtFieldName.Text + " " + frm.txtFieldType.Text + ";";
+                    //confirm query
+                    if (ConfirmQuery(query) == true)
+                    {
+                        try
+                        {
+                            //try execute query
+                            mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(query, mySqlConnection);
+                            mySqlCommand.ExecuteNonQuery();
+                            ShowLog("Query: " + query);
+                            mySqlDataReader.Close();
+                            //query executed successfully
+                            b = false;
+                        }
+                        catch (Exception e)
+                        {
+                            //error
+                            DialogResult dialogException = MessageBox.Show("ERROR to execute query: " + e.ToString(), "ERROR", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                            if (dialogException == DialogResult.Retry)
+                            {
+                                //new attemp
+                                b = true;
+                            }
+                            else if (dialogException == DialogResult.Cancel)
+                            {
+                                //stop attemps
+                                b = false;
+                            }
+                        }
+                    }
+                }
+                else if (dialogResult == DialogResult.Cancel)
+                {
+                    //stop attemps
+                    b = false;
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -689,12 +782,15 @@ namespace OurDDLApp
 
         private void btnAlter_Click(object sender, EventArgs e)
         {
+            //if it's field...
             if(currentSelectedElementType == "field")
             {
+                //alter field
                 alterField(currentElementName, currentSelectedElementName);
             }
             else
             {
+                //can't alter this object
                 MessageBox.Show("You can't alter a " + currentSelectedElementType, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
