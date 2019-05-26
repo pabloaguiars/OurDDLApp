@@ -163,6 +163,7 @@
             this.btnTruncate.Text = "Truncate";
             this.btnTruncate.UseVisualStyleBackColor = true;
             this.btnTruncate.Visible = false;
+            this.btnTruncate.Click += new System.EventHandler(this.btnTruncate_Click);
             // 
             // btnDelete
             // 

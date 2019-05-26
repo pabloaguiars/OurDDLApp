@@ -10,16 +10,15 @@ using System.Windows.Forms;
 
 namespace OurDDLApp
 {
-    public partial class frmCreateDataBase : Form
+    public partial class frmCreate : Form
     {
-        public frmCreateDataBase()
+        public frmCreate()
         {
             InitializeComponent();
         }
-
         private void btnCreateDatabase_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
