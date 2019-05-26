@@ -35,15 +35,18 @@ namespace OurDDLApp
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            panelHome.Visible = false;
+            panelWelcome.Location = new Point(171, 56);
             wayToElement.Add("server", "");
             wayToElement.Add("database", "");
             wayToElement.Add("table", "");
             wayToElement.Add("field", "");
             lblCurrentElementTreeView.Text = "";
             lblCurrentSelectedElementTreeView.Text = "";
-            txtLogs.Text = "Ready to Connect";
+            txtLogs.Text = DateTime.Now.ToString() + " " + "Ready to Connect";
             btnGoBackTreeView.Enabled = false;
             btnGoBackTreeView.Visible = false;
+            btnConnectDisconnectMySQL.Focus();
         }
 
         /// <summary>
@@ -146,14 +149,8 @@ namespace OurDDLApp
                 {
                     //stop attempts
                     b = false;
-                    sideBar.Visible = false;
-                    btnConnectDisconnectMySQL.Visible = true;
-                    btnCreate.Visible = false;
-                    btnDelete.Visible = false;
-                    btnTruncate.Visible = false;
-                    btnAlter.Visible = false;
-                    txtLogs.Visible = false;
-                    lblCurrentSelectedElementTreeView.Visible = false;
+                    panelWelcome.Visible = true;
+                    panelHome.Visible = false;
                 }
             }
         }
@@ -405,13 +402,13 @@ namespace OurDDLApp
             //}
 
             frmCreate frmCreateDataBase = new frmCreate();
-            frmCreateDataBase.lblNombre.Text = "Nombre de la tabla";
+            frmCreateDataBase.lblNombre.Text = "Nombre de la tabla ";
             frmCreateDataBase.ShowDialog();
 
             if (frmCreateDataBase.DialogResult == DialogResult.OK)
             {
                 string tableName = frmCreateDataBase.txtNombreDatabase.Text;
-                string query = "CREATE TABLE " + tableName;
+                string query = "CREATE TABLE " + tableName + "(";
                 bool addedFirstField = false;
 
                 frmFields frmFields = new frmFields();
@@ -419,20 +416,39 @@ namespace OurDDLApp
 
                 if (frmFields.DialogResult == DialogResult.OK)
                 {
+                    int size = frmFields.fields.Count;
+                    int count = 1;
+                    foreach (string item in frmFields.fields)
+                    {
+                        if (count ==size)
+                        {
+                            query += item + " )";
+
+                        }
+                        else
+                        {
+                            query += item + ",";
+
+                        }
+                        count += 1;
+                    }
+                    try
+                    {
+                        mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                        DialogResult dialog = MessageBox.Show(query , "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        mySqlCommand.ExecuteNonQuery();
+                        PutDataInTreeView();
+                    }
+                    catch (Exception e)
+                    {
+                        DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
 
            
-                try
-                {
-                    //mySqlCommand = new MySqlCommand(query, mySqlConnection);
-                    //mySqlCommand.ExecuteNonQuery();
-                    //PutDataInTreeView();
-                }
-                catch (Exception e)
-                {
-                    DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
+            
             }
 
         }
@@ -468,6 +484,22 @@ namespace OurDDLApp
 
             }
 
+        }
+
+        public void alterField(string tableName, string fieldName)
+        {
+            MessageBox.Show("I'm here!");
+            mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand("SHOW FIELDS FROM " + tableName +  " WHERE  Field = '" + fieldName + "';", mySqlConnection);
+            mySqlDataReader = mySqlCommand.ExecuteReader();
+            ShowLog("SHOW FIELDS FROM " + tableName + " WHERE  Field = '" + fieldName + "';");
+            while (mySqlDataReader.Read())
+            {
+                for (int i = 0; i < mySqlDataReader.FieldCount; i++)
+                {
+                    MessageBox.Show(mySqlDataReader.GetValue(i).ToString());
+                }
+            }
+            mySqlDataReader.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -691,14 +723,8 @@ namespace OurDDLApp
                 ConnectMySQL();
                 if (CheckConnectMySQL())
                 {
-                    sideBar.Visible = true;
-                    btnConnectDisconnectMySQL.Visible = false;
-                    btnCreate.Visible = true;
-                    btnDelete.Visible = true;
-                    btnTruncate.Visible = true;
-                    btnAlter.Visible = true;
-                    txtLogs.Visible = true;
-                    lblCurrentSelectedElementTreeView.Visible = true;
+                    panelWelcome.Visible = false;
+                    panelHome.Visible = true;
                 }
               
             }
@@ -708,14 +734,8 @@ namespace OurDDLApp
                 DisconnectMysql();
                 if (!CheckConnectMySQL())
                 {
-                    sideBar.Visible = false;
-                    btnConnectDisconnectMySQL.Visible = true;
-                    btnCreate.Visible = false;
-                    btnDelete.Visible = false;
-                    btnTruncate.Visible = false;
-                    btnAlter.Visible = false;
-                    txtLogs.Visible = false;
-                    lblCurrentSelectedElementTreeView.Visible = false;
+                    panelWelcome.Visible = true;
+                    panelHome.Visible = false;
                 }
             }
         }
@@ -726,14 +746,8 @@ namespace OurDDLApp
             DisconnectMysql();
             if (!CheckConnectMySQL())
             {
-                sideBar.Visible = false;
-                btnConnectDisconnectMySQL.Visible = true;
-                btnCreate.Visible = false;
-                btnDelete.Visible = false;
-                btnTruncate.Visible = false;
-                btnAlter.Visible = false;
-                txtLogs.Visible = false;
-                lblCurrentSelectedElementTreeView.Visible = false;
+                panelWelcome.Visible = true;
+                panelHome.Visible = false;
             }
         }
 
@@ -778,6 +792,18 @@ namespace OurDDLApp
             {
                 MessageBox.Show("field", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+        }
+
+        private void btnAlter_Click(object sender, EventArgs e)
+        {
+            if(currentSelectedElementType == "field")
+            {
+                alterField(currentElementName, currentSelectedElementName);
+            }
+            else
+            {
+                MessageBox.Show("You can't alter a " + currentSelectedElementType, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

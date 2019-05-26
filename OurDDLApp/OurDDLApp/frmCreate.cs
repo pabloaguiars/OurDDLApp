@@ -16,9 +16,15 @@ namespace OurDDLApp
         {
             InitializeComponent();
         }
+
+        
         private void btnCreateDatabase_Click(object sender, EventArgs e)
         {
-            
+            if (txtNombreDatabase.Text != "")
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }

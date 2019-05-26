@@ -54,6 +54,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAlterField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlterField.Designer.cs">
+      <DependentUpon>frmAlterField.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConnectDBMS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlterField.resx">
+      <DependentUpon>frmAlterField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConnectDBMS.resx">
       <DependentUpon>frmConnectDBMS.cs</DependentUpon>
@@ -108,6 +117,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_cascade_display_layout_stack_sw_view_392519.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\index.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_add_cross_new_plus_create_392530.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_close_delete_remove_icon_392517.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Delete_discart_exit_less_line_minus_negative_no_premium_remove_392511.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_edit_editor_pen_pencil_write_392507.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

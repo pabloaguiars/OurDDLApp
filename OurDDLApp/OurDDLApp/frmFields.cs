@@ -16,17 +16,19 @@ namespace OurDDLApp
         {
             InitializeComponent();
         }
-        public List<string>  fields;
+        public List<string>  fields = new List<string>();
         string fieldType="";
         string fieldName = "";
         string fieldLength = "";
+        bool fieldAdded = false;
+        
 
 
 
         private void btnAddField_Click(object sender, EventArgs e)
         {
             fieldName = txtNombreDato.Text;
-            fieldLength = txtNombreDato.Text;
+            fieldLength = txtFieldLength.Text;
 
             if (fieldType != "")
             {
@@ -36,15 +38,22 @@ namespace OurDDLApp
                     {
                         case "int":
                             fields.Add(fieldName + " " + "INT");
+                            txtNombreDato.Text = "";
+                            fieldAdded = true;
                             break;
                         case "varchar":
                             if (fieldLength != "")
                             {
-                               fields.Add(fieldName + " " + "varchar(" + fieldLength);
+                               fields.Add(fieldName + " " + "varchar(" + fieldLength + ")");
+                               txtNombreDato.Text = "";
+                               txtFieldLength.Text = "";
+                               fieldAdded = true;
+
 
                             }
                             else
                             {
+                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
                             break;
@@ -57,13 +66,24 @@ namespace OurDDLApp
             }
             else
             {
+                MessageBox.Show("Eliga un tipo de dato", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            btnFinish.DialogResult = DialogResult.OK;
+            if (fieldAdded)
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Agrega un campo primero", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
         }
 
         private void frmFields_Load(object sender, EventArgs e)

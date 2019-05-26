@@ -139,6 +139,7 @@
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.lblTipoDato);
             this.Name = "frmFields";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmFields";
             this.Load += new System.EventHandler(this.frmFields_Load);
             this.ResumeLayout(false);

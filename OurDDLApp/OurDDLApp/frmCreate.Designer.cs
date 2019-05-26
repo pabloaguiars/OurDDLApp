@@ -52,7 +52,6 @@
             // 
             // btnCreateDatabase
             // 
-            this.btnCreateDatabase.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCreateDatabase.Location = new System.Drawing.Point(155, 127);
             this.btnCreateDatabase.Name = "btnCreateDatabase";
             this.btnCreateDatabase.Size = new System.Drawing.Size(75, 23);
