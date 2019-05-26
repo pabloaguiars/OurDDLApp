@@ -285,5 +285,35 @@ namespace OurDDLApp
                     break;
             }
         }
+
+        private void txtFieldLength_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFIeldName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFieldName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFielfLength_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFieldType_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -35,6 +35,10 @@
             this.sideBar = new System.Windows.Forms.Panel();
             this.btnDisconnectMySQL = new System.Windows.Forms.Button();
             this.panelHome = new System.Windows.Forms.Panel();
+            this.pbAlter = new System.Windows.Forms.PictureBox();
+            this.pbpTruncate = new System.Windows.Forms.PictureBox();
+            this.pbDelete = new System.Windows.Forms.PictureBox();
+            this.pbCreate = new System.Windows.Forms.PictureBox();
             this.lblCurrentSelectedElementTreeView = new System.Windows.Forms.Label();
             this.txtLogs = new System.Windows.Forms.TextBox();
             this.btnAlter = new System.Windows.Forms.Button();
@@ -43,23 +47,19 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnConnectDisconnectMySQL = new System.Windows.Forms.Button();
             this.panelWelcome = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pbMySQL = new System.Windows.Forms.PictureBox();
             this.pbOurDDLApp = new System.Windows.Forms.PictureBox();
-            this.pbAlter = new System.Windows.Forms.PictureBox();
-            this.pbpTruncate = new System.Windows.Forms.PictureBox();
-            this.pbDelete = new System.Windows.Forms.PictureBox();
-            this.pbCreate = new System.Windows.Forms.PictureBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.sideBar.SuspendLayout();
             this.panelHome.SuspendLayout();
-            this.panelWelcome.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMySQL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOurDDLApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbpTruncate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCreate)).BeginInit();
+            this.panelWelcome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMySQL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOurDDLApp)).BeginInit();
             this.SuspendLayout();
             // 
             // treeView
@@ -145,6 +145,46 @@
             this.panelHome.Visible = false;
             this.panelHome.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // pbAlter
+            // 
+            this.pbAlter.Image = global::OurDDLApp.Properties.Resources.iconfinder_edit_editor_pen_pencil_write_392507;
+            this.pbAlter.Location = new System.Drawing.Point(337, 402);
+            this.pbAlter.Name = "pbAlter";
+            this.pbAlter.Size = new System.Drawing.Size(65, 65);
+            this.pbAlter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAlter.TabIndex = 26;
+            this.pbAlter.TabStop = false;
+            // 
+            // pbpTruncate
+            // 
+            this.pbpTruncate.Image = global::OurDDLApp.Properties.Resources.iconfinder_Delete_discart_exit_less_line_minus_negative_no_premium_remove_392511;
+            this.pbpTruncate.Location = new System.Drawing.Point(337, 294);
+            this.pbpTruncate.Name = "pbpTruncate";
+            this.pbpTruncate.Size = new System.Drawing.Size(65, 65);
+            this.pbpTruncate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbpTruncate.TabIndex = 25;
+            this.pbpTruncate.TabStop = false;
+            // 
+            // pbDelete
+            // 
+            this.pbDelete.Image = global::OurDDLApp.Properties.Resources.iconfinder_close_delete_remove_icon_392517;
+            this.pbDelete.Location = new System.Drawing.Point(337, 183);
+            this.pbDelete.Name = "pbDelete";
+            this.pbDelete.Size = new System.Drawing.Size(65, 65);
+            this.pbDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbDelete.TabIndex = 24;
+            this.pbDelete.TabStop = false;
+            // 
+            // pbCreate
+            // 
+            this.pbCreate.Image = global::OurDDLApp.Properties.Resources.iconfinder_add_cross_new_plus_create_392530;
+            this.pbCreate.Location = new System.Drawing.Point(337, 71);
+            this.pbCreate.Name = "pbCreate";
+            this.pbCreate.Size = new System.Drawing.Size(65, 65);
+            this.pbCreate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCreate.TabIndex = 23;
+            this.pbCreate.TabStop = false;
+            // 
             // lblCurrentSelectedElementTreeView
             // 
             this.lblCurrentSelectedElementTreeView.AutoSize = true;
@@ -191,7 +231,7 @@
             this.btnTruncate.TabIndex = 19;
             this.btnTruncate.Text = "Truncate";
             this.btnTruncate.UseVisualStyleBackColor = true;
-
+            this.btnTruncate.Click += new System.EventHandler(this.btnTruncate_Click);
             // 
             // btnDelete
             // 
@@ -242,16 +282,6 @@
             this.panelWelcome.Size = new System.Drawing.Size(619, 441);
             this.panelWelcome.TabIndex = 23;
             // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(140, 36);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(406, 78);
-            this.lblTitle.TabIndex = 17;
-            this.lblTitle.Text = "OurDDLApp";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -285,45 +315,15 @@
             this.pbOurDDLApp.TabIndex = 18;
             this.pbOurDDLApp.TabStop = false;
             // 
-            // pbAlter
+            // lblTitle
             // 
-            this.pbAlter.Image = global::OurDDLApp.Properties.Resources.iconfinder_edit_editor_pen_pencil_write_392507;
-            this.pbAlter.Location = new System.Drawing.Point(337, 402);
-            this.pbAlter.Name = "pbAlter";
-            this.pbAlter.Size = new System.Drawing.Size(65, 65);
-            this.pbAlter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbAlter.TabIndex = 26;
-            this.pbAlter.TabStop = false;
-            // 
-            // pbpTruncate
-            // 
-            this.pbpTruncate.Image = global::OurDDLApp.Properties.Resources.iconfinder_Delete_discart_exit_less_line_minus_negative_no_premium_remove_392511;
-            this.pbpTruncate.Location = new System.Drawing.Point(337, 294);
-            this.pbpTruncate.Name = "pbpTruncate";
-            this.pbpTruncate.Size = new System.Drawing.Size(65, 65);
-            this.pbpTruncate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbpTruncate.TabIndex = 25;
-            this.pbpTruncate.TabStop = false;
-            // 
-            // pbDelete
-            // 
-            this.pbDelete.Image = global::OurDDLApp.Properties.Resources.iconfinder_close_delete_remove_icon_392517;
-            this.pbDelete.Location = new System.Drawing.Point(337, 183);
-            this.pbDelete.Name = "pbDelete";
-            this.pbDelete.Size = new System.Drawing.Size(65, 65);
-            this.pbDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbDelete.TabIndex = 24;
-            this.pbDelete.TabStop = false;
-            // 
-            // pbCreate
-            // 
-            this.pbCreate.Image = global::OurDDLApp.Properties.Resources.iconfinder_add_cross_new_plus_create_392530;
-            this.pbCreate.Location = new System.Drawing.Point(337, 71);
-            this.pbCreate.Name = "pbCreate";
-            this.pbCreate.Size = new System.Drawing.Size(65, 65);
-            this.pbCreate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCreate.TabIndex = 23;
-            this.pbCreate.TabStop = false;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(140, 36);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(406, 78);
+            this.lblTitle.TabIndex = 17;
+            this.lblTitle.Text = "OurDDLApp";
             // 
             // frmMain
             // 
@@ -348,14 +348,14 @@
             this.sideBar.PerformLayout();
             this.panelHome.ResumeLayout(false);
             this.panelHome.PerformLayout();
-            this.panelWelcome.ResumeLayout(false);
-            this.panelWelcome.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMySQL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOurDDLApp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbpTruncate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCreate)).EndInit();
+            this.panelWelcome.ResumeLayout(false);
+            this.panelWelcome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMySQL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOurDDLApp)).EndInit();
             this.ResumeLayout(false);
 
         }

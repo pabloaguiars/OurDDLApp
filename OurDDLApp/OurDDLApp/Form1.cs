@@ -207,6 +207,8 @@ namespace OurDDLApp
                             }
                         }
                         mySqlDataReader.Close();
+                        currentSelectedElementName = "";
+                        currentSelectedElementType = "";
                         PutCurrentElementTreeView();
                         PutCurrentElementSelectedTreeView();
                         EnableDisableButtons();
@@ -231,6 +233,8 @@ namespace OurDDLApp
                             }
                         }
                         mySqlDataReader.Close();
+                        currentSelectedElementName = "";
+                        currentSelectedElementType = "";
                         PutCurrentElementTreeView();
                         PutCurrentElementSelectedTreeView();
                         EnableDisableButtons();
@@ -250,6 +254,8 @@ namespace OurDDLApp
                             }
                         }
                         mySqlDataReader.Close();
+                        currentSelectedElementName = "";
+                        currentSelectedElementType = "";
                         PutCurrentElementTreeView();
                         PutCurrentElementSelectedTreeView();
                         EnableDisableButtons();
@@ -367,11 +373,14 @@ namespace OurDDLApp
         public void dropTable (string elementName)
         {
 
-            string useTable = "DROP TABLE"+" " + elementName;
+            string query = "DROP TABLE"+" " + elementName;
             try
             {
-                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand = new MySqlCommand(query, mySqlConnection);
                 mySqlCommand.ExecuteNonQuery();
+                PutDataInTreeView();
+                ShowLog("Query: " + query);
+
             }
             catch (Exception e)
             {
@@ -384,12 +393,14 @@ namespace OurDDLApp
         public void dropDatabase( string elementName)
         {
 
-            string useTable = "DROP DATABASE"  + " " + elementName;
+            string query = "DROP DATABASE"  + " " + elementName;
             try
             {
-                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand = new MySqlCommand(query, mySqlConnection);
                 mySqlCommand.ExecuteNonQuery();
                 PutDataInTreeView();
+                ShowLog("Query: " + query);
+
             }
             catch (Exception e)
             {
@@ -404,11 +415,12 @@ namespace OurDDLApp
         public void truncateTable(string elementName)
         {
 
-            string useTable = "TRUNCATE  TABLE" + " " + elementName;
+            string query = "TRUNCATE  TABLE" + " " + elementName;
             try
             {
-                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand = new MySqlCommand(query, mySqlConnection);
                 mySqlCommand.ExecuteNonQuery();
+                ShowLog("Query: " + query);
                 PutDataInTreeView();
             }
             catch (Exception e)
@@ -450,17 +462,7 @@ namespace OurDDLApp
         public void createTable()
         {
 
-            //string useTable = "CREATE TABLE "+ tableName + "( id INT NOT NULL PRIMARY KEY AUTO_INCREMENT );";
-            //try
-            //{
-            //    mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
-            //    mySqlCommand.ExecuteNonQuery();
-            //}
-            //catch (Exception e)
-            //{
-            //    DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //}
+       
 
             frmCreate frmCreateDataBase = new frmCreate();
             frmCreateDataBase.lblNombre.Text = "Nombre de la tabla ";
@@ -500,6 +502,8 @@ namespace OurDDLApp
 
                         mySqlCommand.ExecuteNonQuery();
                         PutDataInTreeView();
+                        ShowLog("Query: " + query);
+
                     }
                     catch (Exception e)
                     {
@@ -513,31 +517,57 @@ namespace OurDDLApp
             }
 
         }
-        public void createField(string tableName, string fieldName,string fieldType)
+        public void createField()
         {
 
-            string useTable = "AlTER TABLE " + tableName + " ADD " + fieldName +" "+ fieldType;
-            try
-            {
-                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
-                mySqlCommand.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            string query = "";
+            query = "AlTER TABLE " + wayToElement["table"] + " ADD  " + currentSelectedElementName;
+
+            frmFields frmFields = new frmFields();
+            frmFields.ShowDialog();
+
+                if (frmFields.DialogResult == DialogResult.OK)
+                {
+                    int size = frmFields.fields.Count;
+                    int count = 1;
+                    try
+                    {
+                    foreach (string item in frmFields.fields)
+                    {
+                       
+
+                        query = ("AlTER TABLE " + wayToElement["table"] + " ADD  " + item);
+                        mySqlCommand = new MySqlCommand(query, mySqlConnection);
+
+                        mySqlCommand.ExecuteNonQuery();
+                        ShowLog("Query: " + query);
+
+                    }
+
+
+                        PutDataInTreeView();
+
+                    }
+                    catch (Exception e)
+                    {
+                        DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
 
             }
-
-        }
 
         public void deleteField(string tableName, string fieldName)
         {
 
-            string useTable = "AlTER TABLE " + tableName + " DROP  " + fieldName ;
+            string query = "AlTER TABLE " + tableName + " DROP  " + fieldName ;
             try
             {
-                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand = new MySqlCommand(query, mySqlConnection);
                 mySqlCommand.ExecuteNonQuery();
+                PutDataInTreeView();
+                ShowLog("Query: " + query);
+
             }
             catch (Exception e)
             {
@@ -809,12 +839,7 @@ namespace OurDDLApp
             PutDataInTreeView();
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            createField(wayToElement["table"], "hola", "int");
-            PutDataInTreeView();
-
-        }
+     
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -841,17 +866,40 @@ namespace OurDDLApp
         {
             if (currentElementType == "server")
             {
+                if (currentSelectedElementName != "")
+                {
+
                 dropDatabase(currentSelectedElementName);
+                }
+                else
+                {
+                    MessageBox.Show("Seleciona una base de datos", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
             else if (currentElementType == "database")
             {
-                MessageBox.Show("database", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (currentSelectedElementName != "")
+                {
+                    dropTable(currentSelectedElementName);
+                }
+                else
+                {
+                    MessageBox.Show("Seleciona una tabla", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                }
             }
             else if (currentElementType == "table")
             {
-                MessageBox.Show("table", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (currentSelectedElementName != "")
+                {
+                    deleteField(wayToElement["table"], currentSelectedElementName);
+                }
+                else
+                {
+                    MessageBox.Show("Seleciona un campo", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                }
             }
             else if (currentElementType == "field")
             {
@@ -908,7 +956,7 @@ namespace OurDDLApp
             }
             else if (currentElementType == "table")
             {
-                MessageBox.Show("table", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                createField();
 
             }
             else if (currentElementType == "field")
