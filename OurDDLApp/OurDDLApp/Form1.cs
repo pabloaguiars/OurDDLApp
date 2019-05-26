@@ -209,6 +209,7 @@ namespace OurDDLApp
                         mySqlDataReader.Close();
                         PutCurrentElementTreeView();
                         PutCurrentElementSelectedTreeView();
+                        EnableDisableButtons();
                     }
                     else if (currentElementType == "database")
                     {
@@ -232,6 +233,7 @@ namespace OurDDLApp
                         mySqlDataReader.Close();
                         PutCurrentElementTreeView();
                         PutCurrentElementSelectedTreeView();
+                        EnableDisableButtons();
                     }
                     else if (currentElementType == "table")
                     {
@@ -250,6 +252,7 @@ namespace OurDDLApp
                         mySqlDataReader.Close();
                         PutCurrentElementTreeView();
                         PutCurrentElementSelectedTreeView();
+                        EnableDisableButtons();
                     }
                     else if (currentElementType == "field")
                     {
@@ -276,6 +279,63 @@ namespace OurDDLApp
         {
             //show current element type and name
             lblCurrentElementTreeView.Text = string.Format("{0}: {1}", currentElementType, currentElementName);
+        }
+
+        private bool ConfirmQuery(string query)
+        {
+            bool answer = false;
+
+            //create dialog for response
+            DialogResult result = MessageBox.Show(string.Format("Execute the following query: '{0}'?", query), "Confirm query", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                //positive confirm
+                answer = true;
+            }
+            else if (result == DialogResult.No)
+            {
+                //negative confirm
+                answer = false;
+            }
+
+            return answer;
+        }
+
+        private void EnableDisableButtons()
+        {
+            if (currentElementType == "server")
+            {
+                btnCreate.Enabled = true;
+                pbCreate.Enabled = true;
+                btnDelete.Enabled = true;
+                pbDelete.Enabled = true;
+                btnTruncate.Enabled = false;
+                pbpTruncate.Enabled = false;
+                btnAlter.Enabled = false;
+                pbAlter.Enabled = false;
+            }
+            else if (currentElementType == "database")
+            {
+                btnCreate.Enabled = true;
+                pbCreate.Enabled = true;
+                btnDelete.Enabled = true;
+                pbDelete.Enabled = true;
+                btnTruncate.Enabled = true;
+                pbpTruncate.Enabled = true;
+                btnAlter.Enabled = false;
+                pbAlter.Enabled = false;
+            }
+            else if (currentElementType == "table")
+            {
+                btnCreate.Enabled = true;
+                pbCreate.Enabled = true;
+                btnDelete.Enabled = true;
+                pbDelete.Enabled = true;
+                btnTruncate.Enabled = false;
+                pbpTruncate.Enabled = false;
+                btnAlter.Enabled = true;
+                pbAlter.Enabled = true;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -487,6 +547,11 @@ namespace OurDDLApp
 
         }
 
+        /// <summary>
+        /// Alter field for que given table.
+        /// </summary>
+        /// <param name="tableName">Table</param>
+        /// <param name="fieldName">Field</param>
         public void alterField(string tableName, string fieldName)
         {
             //show selected field info
@@ -608,6 +673,7 @@ namespace OurDDLApp
                 currentSelectedElementName = "";
                 currentSelectedElementType = "";
                 PutCurrentElementSelectedTreeView();
+                EnableDisableButtons();
             }
 
             if (currentElementType == "server")
@@ -652,6 +718,7 @@ namespace OurDDLApp
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["database"] = e.Node.Text;
                 PutCurrentElementSelectedTreeView();
+                EnableDisableButtons();
             }
             else if (currentElementType == "database")
             {
@@ -660,6 +727,7 @@ namespace OurDDLApp
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["table"] = e.Node.Text;
                 PutCurrentElementSelectedTreeView();
+                EnableDisableButtons();
             }
             else if (currentElementType == "table")
             {
@@ -668,6 +736,7 @@ namespace OurDDLApp
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["field"] = e.Node.Text;
                 PutCurrentElementSelectedTreeView();
+                EnableDisableButtons();
             }
         }
 
@@ -706,6 +775,7 @@ namespace OurDDLApp
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["database"] = e.Node.Text;
                 PutCurrentElementSelectedTreeView();
+                EnableDisableButtons();
             }
             else if (currentElementType == "database")
             {
@@ -714,6 +784,7 @@ namespace OurDDLApp
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["table"] = e.Node.Text;
                 PutCurrentElementSelectedTreeView();
+                EnableDisableButtons();
             }
             else if (currentElementType == "table")
             {
@@ -722,27 +793,8 @@ namespace OurDDLApp
                 currentSelectedElementName = e.Node.Text;
                 wayToElement["field"] = e.Node.Text;
                 PutCurrentElementSelectedTreeView();
+                EnableDisableButtons();
             }
-        }
-
-        private bool ConfirmQuery(string query)
-        {
-            bool answer = false;
-
-            //create dialog for response
-            DialogResult result = MessageBox.Show(string.Format("Execute the following query: '{0}'?", query), "Confirm query", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes)
-            {
-                //positive confirm
-                answer = true;
-            }
-            else if (result == DialogResult.No)
-            {
-                //negative confirm
-                answer = false;
-            }
-
-            return answer;
         }
 
         private void button3_Click(object sender, EventArgs e)
