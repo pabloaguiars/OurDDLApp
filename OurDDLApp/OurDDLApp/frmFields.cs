@@ -16,38 +16,159 @@ namespace OurDDLApp
         {
             InitializeComponent();
         }
-        public List<string>  fields = new List<string>();
-        string fieldType="";
+        public List<string> fields = new List<string>();
+        string fieldType = "";
         string fieldName = "";
         string fieldLength = "";
         bool fieldAdded = false;
-        
+
 
 
 
         private void btnAddField_Click(object sender, EventArgs e)
         {
-            fieldName = txtNombreDato.Text;
+            fieldName = txtFieldName.Text;
             fieldLength = txtFieldLength.Text;
 
             if (fieldType != "")
             {
-                if(fieldName != "")
+                if (fieldName != "")
                 {
                     switch (fieldType)
                     {
-                        case "int":
+                        case "INT":
                             fields.Add(fieldName + " " + "INT");
-                            txtNombreDato.Text = "";
+                            txtFieldName.Text = "";
                             fieldAdded = true;
                             break;
-                        case "varchar":
+                        case "TINYINT":
+                            fields.Add(fieldName + " " + "TINYINT");
+                            txtFieldName.Text = "";
+                            fieldAdded = true;
+                            break;
+                        case "SMALLINT":
+                            fields.Add(fieldName + " " + "SMALLINT");
+                            txtFieldName.Text = "";
+                            fieldAdded = true;
+                            break;
+                        case "MEDIUMINT":
+                            fields.Add(fieldName + " " + "MEDIUMINT");
+                            txtFieldName.Text = "";
+                            fieldAdded = true;
+                            break;
+                        case "BIGINT":
+                            fields.Add(fieldName + " " + "BIGINT");
+                            txtFieldName.Text = "";
+                            fieldAdded = true;
+                            break;
+                        case "DECIMAL":
+                            fields.Add(fieldName + " " + "DECIMAL");
+                            txtFieldName.Text = "";
+                            fieldAdded = true;
+                            break;
+                        case "FLOAT":
+                            fields.Add(fieldName + " " + "FLOAT");
+                            txtFieldName.Text = "";
+                            fieldAdded = true;
+                            break;
+                        case "DOUBLE":
+                            fields.Add(fieldName + " " + "DOUBLE");
+                            txtFieldName.Text = "";
+                            fieldAdded = true;
+                            break;
+                        case "BIT":
+                            fields.Add(fieldName + " " + "BIT");
+                            txtFieldName.Text = "";
+                            fieldAdded = true;
+                            break;
+                        case "VARCHAR":
                             if (fieldLength != "")
                             {
-                               fields.Add(fieldName + " " + "varchar(" + fieldLength + ")");
-                               txtNombreDato.Text = "";
-                               txtFieldLength.Text = "";
-                               fieldAdded = true;
+                                fields.Add(fieldName + " " + "VARCHAR(" + fieldLength + ")");
+                                txtFieldName.Text = "";
+                                txtFieldLength.Text = "";
+                                fieldAdded = true;
+
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                            break;
+                        case "CHAR":
+                            if (fieldLength != "")
+                            {
+                                fields.Add(fieldName + " " + "CHAR(" + fieldLength + ")");
+                                txtFieldName.Text = "";
+                                txtFieldLength.Text = "";
+                                fieldAdded = true;
+
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                            break;
+
+                        case "TINYTEXT":
+                            if (fieldLength != "")
+                            {
+                                fields.Add(fieldName + " " + "TINYTEXT(" + fieldLength + ")");
+                                txtFieldName.Text = "";
+                                txtFieldLength.Text = "";
+                                fieldAdded = true;
+
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                            break;
+                        case "TEXT":
+                            if (fieldLength != "")
+                            {
+                                fields.Add(fieldName + " " + "TEXT(" + fieldLength + ")");
+                                txtFieldName.Text = "";
+                                txtFieldLength.Text = "";
+                                fieldAdded = true;
+
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                            break;
+                        case "MEDIUMTEXT":
+                            if (fieldLength != "")
+                            {
+                                fields.Add(fieldName + " " + "MEDIUMTEXT(" + fieldLength + ")");
+                                txtFieldName.Text = "";
+                                txtFieldLength.Text = "";
+                                fieldAdded = true;
+
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                            break;
+                        case "LONGTEXT":
+                            if (fieldLength != "")
+                            {
+                                fields.Add(fieldName + " " + "LONGTEXT(" + fieldLength + ")");
+                                txtFieldName.Text = "";
+                                txtFieldLength.Text = "";
+                                fieldAdded = true;
 
 
                             }
@@ -93,25 +214,76 @@ namespace OurDDLApp
 
         private void cmbTipoDato_SelectedIndexChanged(object sender, EventArgs e)
         {
-            fieldType = cmbTipoDato.Text;
+            fieldType = cmbFieldType.Text;
 
             switch (fieldType)
             {
-                case "int":
+                case "INT":
                     txtFieldLength.Visible = false;
                     lblFielfLength.Visible = false;
                     break;
-                case "varchar":
+                case "TINYINT":
+                    txtFieldLength.Visible = false;
+                    lblFielfLength.Visible = false;
+                    break;
+                case "SMALLINT":
+                    txtFieldLength.Visible = false;
+                    lblFielfLength.Visible = false;
+                    break;
+                case "MEDIUMINT":
+                    txtFieldLength.Visible = false;
+                    lblFielfLength.Visible = false;
+                    break;
+                case "BIGINT":
+                    txtFieldLength.Visible = false;
+                    lblFielfLength.Visible = false;
+                    break;
+                case "DECIMAL":
+                    txtFieldLength.Visible = false;
+                    lblFielfLength.Visible = false;
+                    break;
+                case "FLOAT":
+                    txtFieldLength.Visible = false;
+                    lblFielfLength.Visible = false;
+                    break;
+                case "DOUBLE":
+                    txtFieldLength.Visible = false;
+                    lblFielfLength.Visible = false;
+                    break;
+                case "BIT":
+                    txtFieldLength.Visible = false;
+                    lblFielfLength.Visible = false;
+                    break;
+                case "VARCHAR":
                     txtFieldLength.Visible = true;
-                    lblFielfLength.Visible = true; 
+                    lblFielfLength.Visible = true;
+                    break;
+                case "CHAR":
+                    txtFieldLength.Visible = true;
+                    lblFielfLength.Visible = true;
+                    break;
+
+                case "TINYTEXT":
+                    txtFieldLength.Visible = true;
+                    lblFielfLength.Visible = true;
+                    break;
+                case "TEXT":
+                    txtFieldLength.Visible = true;
+                    lblFielfLength.Visible = true;
+                    break;
+                case "MEDIUMTEXT":
+                    txtFieldLength.Visible = true;
+                    lblFielfLength.Visible = true;
+                    break;
+                case "LONGTEXT":
+                    txtFieldLength.Visible = true;
+                    lblFielfLength.Visible = true;
                     break;
                 default:
                     txtFieldLength.Visible = false;
                     lblFielfLength.Visible = false;
                     break;
             }
-
-
         }
     }
 }
