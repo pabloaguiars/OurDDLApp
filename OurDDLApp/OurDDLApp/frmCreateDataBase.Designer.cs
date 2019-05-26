@@ -76,11 +76,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 175);
+            this.ControlBox = false;
             this.Controls.Add(this.btnCancelarDatabase);
             this.Controls.Add(this.btnCreateDatabase);
             this.Controls.Add(this.txtNombreDatabase);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmCreateDataBase";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCreateDataBase";
             this.ResumeLayout(false);
             this.PerformLayout();
