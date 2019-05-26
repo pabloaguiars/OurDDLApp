@@ -329,6 +329,27 @@ namespace OurDDLApp
             {
                 mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
                 mySqlCommand.ExecuteNonQuery();
+                PutDataInTreeView();
+            }
+            catch (Exception e)
+            {
+                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+
+       
+        public void truncateTable(string elementName)
+        {
+
+            string useTable = "TRUNCATE  TABLE" + " " + elementName;
+            try
+            {
+                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+                mySqlCommand.ExecuteNonQuery();
+                PutDataInTreeView();
             }
             catch (Exception e)
             {
@@ -341,7 +362,7 @@ namespace OurDDLApp
 
         public void createDatabase( )
         {
-            frmCreateDataBase frmCreateDataBase = new frmCreateDataBase();
+            frmCreate frmCreateDataBase = new frmCreate();
             frmCreateDataBase.ShowDialog();
 
             if (frmCreateDataBase.DialogResult == DialogResult.OK)
@@ -366,19 +387,69 @@ namespace OurDDLApp
 
         }
 
-        public void createTable(string tableName)
+        public void createTable()
         {
 
-            string useTable = "CREATE TABLE "+ tableName + "( id INT NOT NULL PRIMARY KEY AUTO_INCREMENT );";
-            try
-            {
-                mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
-                mySqlCommand.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //string useTable = "CREATE TABLE "+ tableName + "( id INT NOT NULL PRIMARY KEY AUTO_INCREMENT );";
+            //try
+            //{
+            //    mySqlCommand = new MySqlCommand(useTable, mySqlConnection);
+            //    mySqlCommand.ExecuteNonQuery();
+            //}
+            //catch (Exception e)
+            //{
+            //    DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            //}
+
+            frmCreate frmCreateDataBase = new frmCreate();
+            frmCreateDataBase.lblNombre.Text = "Nombre de la tabla ";
+            frmCreateDataBase.ShowDialog();
+
+            if (frmCreateDataBase.DialogResult == DialogResult.OK)
+            {
+                string tableName = frmCreateDataBase.txtNombreDatabase.Text;
+                string query = "CREATE TABLE " + tableName + "(";
+                bool addedFirstField = false;
+
+                frmFields frmFields = new frmFields();
+                frmFields.ShowDialog();
+
+                if (frmFields.DialogResult == DialogResult.OK)
+                {
+                    int size = frmFields.fields.Count;
+                    int count = 1;
+                    foreach (string item in frmFields.fields)
+                    {
+                        if (count ==size)
+                        {
+                            query += item + " )";
+
+                        }
+                        else
+                        {
+                            query += item + ",";
+
+                        }
+                        count += 1;
+                    }
+                    try
+                    {
+                        mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                        DialogResult dialog = MessageBox.Show(query , "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        mySqlCommand.ExecuteNonQuery();
+                        PutDataInTreeView();
+                    }
+                    catch (Exception e)
+                    {
+                        DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+
+           
+            
             }
 
         }
@@ -527,8 +598,6 @@ namespace OurDDLApp
         private void button2_Click(object sender, EventArgs e)
         {
 
-            createTable("hola");
-            PutDataInTreeView();
 
         }
 
@@ -718,7 +787,25 @@ namespace OurDDLApp
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            if (currentElementType == "server")
+            {
+                dropDatabase(currentSelectedElementName);
+            }
+            else if (currentElementType == "database")
+            {
+                MessageBox.Show("database", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+            else if (currentElementType == "table")
+            {
+                MessageBox.Show("table", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else if (currentElementType == "field")
+            {
+                MessageBox.Show("field", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void btnConnectDisconnectMySQL_Click(object sender, EventArgs e)
@@ -765,7 +852,28 @@ namespace OurDDLApp
             }
             else if (currentElementType == "database")
             {
-                MessageBox.Show("database", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                createTable();
+            }
+            else if (currentElementType == "table")
+            {
+                MessageBox.Show("table", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else if (currentElementType == "field")
+            {
+                MessageBox.Show("field", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void btnTruncate_Click(object sender, EventArgs e)
+        {
+            if (currentElementType == "server")
+            {
+            }
+            else if (currentElementType == "database")
+            {
+                truncateTable(currentSelectedElementName);
 
             }
             else if (currentElementType == "table")

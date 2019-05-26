@@ -191,6 +191,7 @@
             this.btnTruncate.TabIndex = 19;
             this.btnTruncate.Text = "Truncate";
             this.btnTruncate.UseVisualStyleBackColor = true;
+
             // 
             // btnDelete
             // 

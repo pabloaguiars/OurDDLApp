@@ -66,11 +66,17 @@
     <Compile Include="frmConnectDBMS.Designer.cs">
       <DependentUpon>frmConnectDBMS.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCreateDataBase.cs">
+    <Compile Include="frmCreate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCreateDataBase.Designer.cs">
-      <DependentUpon>frmCreateDataBase.cs</DependentUpon>
+    <Compile Include="frmCreate.Designer.cs">
+      <DependentUpon>frmCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFields.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFields.Designer.cs">
+      <DependentUpon>frmFields.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,8 +89,11 @@
     <EmbeddedResource Include="frmConnectDBMS.resx">
       <DependentUpon>frmConnectDBMS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCreateDataBase.resx">
-      <DependentUpon>frmCreateDataBase.cs</DependentUpon>
+    <EmbeddedResource Include="frmCreate.resx">
+      <DependentUpon>frmCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFields.resx">
+      <DependentUpon>frmFields.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
