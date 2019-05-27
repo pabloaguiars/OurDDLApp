@@ -56,7 +56,7 @@ namespace OurDDLApp
         public void ShowLog(string log)
         {
 
-            txtLogs.Text += System.Environment.NewLine + DateTime.Now.ToString() + " " + log;
+            txtLogs.Text = DateTime.Now.ToString() + " " + log + System.Environment.NewLine + txtLogs.Text;
         }
 
         /// <summary>
@@ -373,14 +373,16 @@ namespace OurDDLApp
         public void dropTable (string elementName)
         {
 
-            string query = "DROP TABLE"+" " + elementName;
+            string query = "DROP TABLE"+" " + elementName + ";";
             try
             {
-                mySqlCommand = new MySqlCommand(query, mySqlConnection);
-                mySqlCommand.ExecuteNonQuery();
-                PutDataInTreeView();
-                ShowLog("Query: " + query);
-
+                if (ConfirmQuery(query) == true)
+                {
+                    mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                    mySqlCommand.ExecuteNonQuery();
+                    PutDataInTreeView();
+                    ShowLog("Query: " + query);
+                }
             }
             catch (Exception e)
             {
@@ -392,15 +394,16 @@ namespace OurDDLApp
 
         public void dropDatabase( string elementName)
         {
-
-            string query = "DROP DATABASE"  + " " + elementName;
+            string query = "DROP DATABASE"  + " " + elementName + ";";
             try
             {
-                mySqlCommand = new MySqlCommand(query, mySqlConnection);
-                mySqlCommand.ExecuteNonQuery();
-                PutDataInTreeView();
-                ShowLog("Query: " + query);
-
+                if (ConfirmQuery(query) == true)
+                {
+                    mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                    mySqlCommand.ExecuteNonQuery();
+                    PutDataInTreeView();
+                    ShowLog("Query: " + query);
+                }
             }
             catch (Exception e)
             {
@@ -415,13 +418,16 @@ namespace OurDDLApp
         public void truncateTable(string elementName)
         {
 
-            string query = "TRUNCATE  TABLE" + " " + elementName;
+            string query = "TRUNCATE  TABLE" + " " + elementName + ";";
             try
             {
-                mySqlCommand = new MySqlCommand(query, mySqlConnection);
-                mySqlCommand.ExecuteNonQuery();
-                ShowLog("Query: " + query);
-                PutDataInTreeView();
+                if (ConfirmQuery(query) == true)
+                {
+                    mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                    mySqlCommand.ExecuteNonQuery();
+                    ShowLog("Query: " + query);
+                    PutDataInTreeView();
+                }
             }
             catch (Exception e)
             {
@@ -435,12 +441,14 @@ namespace OurDDLApp
         public void createDatabase( )
         {
             frmCreate frmCreateDataBase = new frmCreate();
+            frmCreateDataBase.Text = "Create database";
+            frmCreateDataBase.lblNombre.Text = "Database name:";
             frmCreateDataBase.ShowDialog();
 
             if (frmCreateDataBase.DialogResult == DialogResult.OK)
             {
                 string databaseName = frmCreateDataBase.txtNombreDatabase.Text;
-                string query = "CREATE DATABASE " + databaseName;
+                string query = "CREATE DATABASE " + databaseName + ";";
                 ShowLog("Query: " + query);
                 try
                 {
@@ -461,11 +469,9 @@ namespace OurDDLApp
 
         public void createTable()
         {
-
-       
-
             frmCreate frmCreateDataBase = new frmCreate();
-            frmCreateDataBase.lblNombre.Text = "Nombre de la tabla ";
+            frmCreateDataBase.Text = "Create table";
+            frmCreateDataBase.lblNombre.Text = "Table name:";
             frmCreateDataBase.ShowDialog();
 
             if (frmCreateDataBase.DialogResult == DialogResult.OK)
@@ -497,13 +503,14 @@ namespace OurDDLApp
                     }
                     try
                     {
-                        mySqlCommand = new MySqlCommand(query, mySqlConnection);
-                        DialogResult dialog = MessageBox.Show(query , "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        mySqlCommand.ExecuteNonQuery();
-                        PutDataInTreeView();
-                        ShowLog("Query: " + query);
-
+                        query = query + ";";
+                        if (ConfirmQuery(query) == true)
+                        {
+                            mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                            mySqlCommand.ExecuteNonQuery();
+                            PutDataInTreeView();
+                            ShowLog("Query: " + query);
+                        }
                     }
                     catch (Exception e)
                     {
@@ -511,9 +518,6 @@ namespace OurDDLApp
 
                     }
                 }
-
-           
-            
             }
 
         }
@@ -526,47 +530,53 @@ namespace OurDDLApp
             frmFields frmFields = new frmFields();
             frmFields.ShowDialog();
 
-                if (frmFields.DialogResult == DialogResult.OK)
+            if (frmFields.DialogResult == DialogResult.OK)
+            {
+                int size = frmFields.fields.Count;
+                int count = 1;
+                try
                 {
-                    int size = frmFields.fields.Count;
-                    int count = 1;
-                    try
-                    {
                     foreach (string item in frmFields.fields)
                     {
                        
 
-                        query = ("AlTER TABLE " + wayToElement["table"] + " ADD  " + item);
-                        mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                        query = ("AlTER TABLE " + wayToElement["table"] + " ADD  " + item + ";");
+                        if (ConfirmQuery(query) == true)
+                        {
+                            mySqlCommand = new MySqlCommand(query, mySqlConnection);
 
-                        mySqlCommand.ExecuteNonQuery();
-                        ShowLog("Query: " + query);
-
-                    }
-
-
-                        PutDataInTreeView();
+                            mySqlCommand.ExecuteNonQuery();
+                            ShowLog("Query: " + query);
+                        }
 
                     }
-                    catch (Exception e)
-                    {
-                        DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    }
+
+                    PutDataInTreeView();
+
                 }
+                catch (Exception e)
+                {
+                    DialogResult dialog = MessageBox.Show("ERROR to extract data: " + e.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
 
             }
 
         public void deleteField(string tableName, string fieldName)
         {
 
-            string query = "AlTER TABLE " + tableName + " DROP  " + fieldName ;
+            string query = "AlTER TABLE " + tableName + " DROP  " + fieldName + ";";
             try
             {
-                mySqlCommand = new MySqlCommand(query, mySqlConnection);
-                mySqlCommand.ExecuteNonQuery();
-                PutDataInTreeView();
-                ShowLog("Query: " + query);
+                if (ConfirmQuery(query) == true)
+                {
+                    mySqlCommand = new MySqlCommand(query, mySqlConnection);
+                    mySqlCommand.ExecuteNonQuery();
+                    PutDataInTreeView();
+                    ShowLog("Query: " + query);
+                }
 
             }
             catch (Exception e)
@@ -873,7 +883,7 @@ namespace OurDDLApp
                 }
                 else
                 {
-                    MessageBox.Show("Seleciona una base de datos", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Select a database.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }
@@ -885,7 +895,7 @@ namespace OurDDLApp
                 }
                 else
                 {
-                    MessageBox.Show("Seleciona una tabla", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Select a table.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }
@@ -897,7 +907,7 @@ namespace OurDDLApp
                 }
                 else
                 {
-                    MessageBox.Show("Seleciona un campo", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Select a field.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }
@@ -990,7 +1000,7 @@ namespace OurDDLApp
 
         private void btnAlter_Click(object sender, EventArgs e)
         {
-            //if it's field...
+            //if it's a field...
             if(currentSelectedElementType == "field")
             {
                 //alter field

@@ -38,28 +38,30 @@
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.lblNombre.Location = new System.Drawing.Point(12, 57);
+            this.lblNombre.Location = new System.Drawing.Point(16, 74);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(195, 17);
+            this.lblNombre.Size = new System.Drawing.Size(118, 17);
             this.lblNombre.TabIndex = 0;
-            this.lblNombre.Text = "Nombre de la base de datos";
+            this.lblNombre.Text = "Database name:";
             // 
             // txtNombreDatabase
             // 
             this.txtNombreDatabase.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtNombreDatabase.Location = new System.Drawing.Point(213, 54);
+            this.txtNombreDatabase.Location = new System.Drawing.Point(150, 68);
+            this.txtNombreDatabase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNombreDatabase.Name = "txtNombreDatabase";
-            this.txtNombreDatabase.Size = new System.Drawing.Size(111, 23);
+            this.txtNombreDatabase.Size = new System.Drawing.Size(286, 23);
             this.txtNombreDatabase.TabIndex = 1;
             // 
             // btnCreateDatabase
             // 
             this.btnCreateDatabase.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.btnCreateDatabase.Location = new System.Drawing.Point(184, 114);
+            this.btnCreateDatabase.Location = new System.Drawing.Point(306, 149);
+            this.btnCreateDatabase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateDatabase.Name = "btnCreateDatabase";
-            this.btnCreateDatabase.Size = new System.Drawing.Size(98, 30);
+            this.btnCreateDatabase.Size = new System.Drawing.Size(130, 39);
             this.btnCreateDatabase.TabIndex = 2;
-            this.btnCreateDatabase.Text = "Create";
+            this.btnCreateDatabase.Text = "&Create";
             this.btnCreateDatabase.UseVisualStyleBackColor = true;
             this.btnCreateDatabase.Click += new System.EventHandler(this.btnCreateDatabase_Click);
             // 
@@ -67,29 +69,34 @@
             // 
             this.btnCancelarDatabase.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelarDatabase.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.btnCancelarDatabase.Location = new System.Drawing.Point(56, 114);
+            this.btnCancelarDatabase.Location = new System.Drawing.Point(150, 149);
+            this.btnCancelarDatabase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancelarDatabase.Name = "btnCancelarDatabase";
-            this.btnCancelarDatabase.Size = new System.Drawing.Size(98, 30);
+            this.btnCancelarDatabase.Size = new System.Drawing.Size(130, 39);
             this.btnCancelarDatabase.TabIndex = 3;
-            this.btnCancelarDatabase.Text = "Cancelar";
+            this.btnCancelarDatabase.Text = "&Cancel";
             this.btnCancelarDatabase.UseVisualStyleBackColor = true;
             // 
             // frmCreate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.btnCreateDatabase;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(345, 171);
+            this.CancelButton = this.btnCancelarDatabase;
+            this.ClientSize = new System.Drawing.Size(459, 223);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancelarDatabase);
             this.Controls.Add(this.btnCreateDatabase);
             this.Controls.Add(this.txtNombreDatabase);
             this.Controls.Add(this.lblNombre);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmCreate";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmCreateDataBase";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Create database";
             this.ResumeLayout(false);
             this.PerformLayout();
 

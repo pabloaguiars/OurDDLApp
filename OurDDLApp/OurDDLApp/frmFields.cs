@@ -93,7 +93,7 @@ namespace OurDDLApp
                             }
                             else
                             {
-                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Enter a valid length.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
                             break;
@@ -109,7 +109,7 @@ namespace OurDDLApp
                             }
                             else
                             {
-                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Enter a valid length.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
                             break;
@@ -126,7 +126,7 @@ namespace OurDDLApp
                             }
                             else
                             {
-                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Enter a valid length.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
                             break;
@@ -142,7 +142,7 @@ namespace OurDDLApp
                             }
                             else
                             {
-                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Enter a valid length.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
                             break;
@@ -158,7 +158,7 @@ namespace OurDDLApp
                             }
                             else
                             {
-                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Enter a valid length.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
                             break;
@@ -174,7 +174,7 @@ namespace OurDDLApp
                             }
                             else
                             {
-                                MessageBox.Show("Ingrese una longitud valida", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Enter a valid length.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
                             break;
@@ -187,7 +187,7 @@ namespace OurDDLApp
             }
             else
             {
-                MessageBox.Show("Eliga un tipo de dato", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Choose a data type.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -201,7 +201,7 @@ namespace OurDDLApp
             }
             else
             {
-                MessageBox.Show("Agrega un campo primero", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Add a field first.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
