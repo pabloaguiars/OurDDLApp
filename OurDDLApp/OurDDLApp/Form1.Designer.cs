@@ -64,7 +64,7 @@
             // 
             // treeView
             // 
-            this.treeView.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.treeView.BackColor = System.Drawing.Color.White;
             this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView.Location = new System.Drawing.Point(3, 66);
@@ -91,16 +91,16 @@
             // lblCurrentElementTreeView
             // 
             this.lblCurrentElementTreeView.AutoSize = true;
-            this.lblCurrentElementTreeView.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentElementTreeView.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentElementTreeView.Location = new System.Drawing.Point(17, 26);
             this.lblCurrentElementTreeView.Name = "lblCurrentElementTreeView";
-            this.lblCurrentElementTreeView.Size = new System.Drawing.Size(180, 24);
+            this.lblCurrentElementTreeView.Size = new System.Drawing.Size(176, 25);
             this.lblCurrentElementTreeView.TabIndex = 8;
             this.lblCurrentElementTreeView.Text = "Current element";
             // 
             // sideBar
             // 
-            this.sideBar.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.sideBar.BackColor = System.Drawing.Color.White;
             this.sideBar.Controls.Add(this.btnDisconnectMySQL);
             this.sideBar.Controls.Add(this.lblCurrentElementTreeView);
             this.sideBar.Controls.Add(this.treeView);
@@ -189,10 +189,10 @@
             // 
             this.lblCurrentSelectedElementTreeView.AutoSize = true;
             this.lblCurrentSelectedElementTreeView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCurrentSelectedElementTreeView.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentSelectedElementTreeView.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentSelectedElementTreeView.Location = new System.Drawing.Point(352, 31);
             this.lblCurrentSelectedElementTreeView.Name = "lblCurrentSelectedElementTreeView";
-            this.lblCurrentSelectedElementTreeView.Size = new System.Drawing.Size(278, 26);
+            this.lblCurrentSelectedElementTreeView.Size = new System.Drawing.Size(270, 27);
             this.lblCurrentSelectedElementTreeView.TabIndex = 22;
             this.lblCurrentSelectedElementTreeView.Text = "Current selected element";
             // 

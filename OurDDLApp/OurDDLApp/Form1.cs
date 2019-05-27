@@ -47,6 +47,10 @@ namespace OurDDLApp
             btnGoBackTreeView.Enabled = false;
             btnGoBackTreeView.Visible = false;
             btnConnectDisconnectMySQL.Focus();
+            sideBar.BackColor = Color.FromArgb(0, 97, 139);
+            treeView.BackColor = Color.FromArgb(0, 97, 139);
+            lblCurrentElementTreeView.ForeColor = Color.FromArgb(229, 143, 0);
+            treeView.ForeColor = Color.FromArgb(229, 143, 0);
         }
 
         /// <summary>
